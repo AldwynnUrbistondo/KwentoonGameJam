@@ -2070,7 +2070,7 @@ MonoBehaviour:
   coinsText: {fileID: 295815989}
   waveText: {fileID: 0}
   wave: 0
-  coins: 1000
+  coins: 999999
 --- !u!4 &902033666
 Transform:
   m_ObjectHideFlags: 0
@@ -4232,6 +4232,7 @@ MonoBehaviour:
   poisonTowerPriceText: {fileID: 1101215252}
   sellPriceText: {fileID: 1041586500}
   upgradeTowerPriceText: {fileID: 1942682380}
+  upgradeText: {fileID: 1009609898}
   freezeTowerData: {fileID: 11400000, guid: 257ba0d1b36cfd04e8502e2fa1dde2c4, type: 2}
   rockTowerData: {fileID: 11400000, guid: 0ab6a5d107339744c8dbdea3257dcc00, type: 2}
   poisonTowerData: {fileID: 11400000, guid: 4bdd0cfe74e7aa04db092c9324d67977, type: 2}

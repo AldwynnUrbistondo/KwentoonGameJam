@@ -41,6 +41,7 @@ public class ShopTower : MonoBehaviour
 
     public TextMeshProUGUI sellPriceText;
     public TextMeshProUGUI upgradeTowerPriceText;
+    public TextMeshProUGUI upgradeText;
 
 
     [Header("TowerData")]
@@ -173,7 +174,6 @@ public class ShopTower : MonoBehaviour
         Instantiate(freezeTowerData.towerPrefab, thisPosition, Quaternion.identity, transform);
         isTowerEmpty = false;
 
-        gameManager.coins -= freezeTowerData.price[currentLevel];
         currentTower = 1;
         UpgradeTower();
 
@@ -195,7 +195,6 @@ public class ShopTower : MonoBehaviour
         Instantiate(rockTowerData.towerPrefab, thisPosition, Quaternion.identity, transform); 
         isTowerEmpty = false;
 
-        gameManager.coins -= rockTowerData.price[currentLevel];
         currentTower = 2; 
         UpgradeTower();   
 
@@ -217,7 +216,6 @@ public class ShopTower : MonoBehaviour
         Instantiate(poisonTowerData.towerPrefab, thisPosition, Quaternion.identity, transform); 
         isTowerEmpty = false;
 
-        gameManager.coins -= poisonTowerData.price[currentLevel];
         currentTower = 3; 
         UpgradeTower();   
 
@@ -229,7 +227,8 @@ public class ShopTower : MonoBehaviour
 
         if (currentTower == 1)
         {
-            FreezeTowerScript towerScript = freezeTowerData.towerPrefab.GetComponent<FreezeTowerScript>();
+            gameManager.coins -= freezeTowerData.price[currentLevel];
+            FreezeTowerScript towerScript = GetComponentInChildren<FreezeTowerScript>();
             towerScript.fireRate = freezeTowerData.fireRate[currentLevel];
             towerScript.damage = freezeTowerData.damage[currentLevel];
             towerScript.critRate = freezeTowerData.critRate[currentLevel];
@@ -238,6 +237,7 @@ public class ShopTower : MonoBehaviour
         }
         else if (currentTower == 2)
         {
+            gameManager.coins -= rockTowerData.price[currentLevel];
             TowerScript towerScript = rockTowerData.towerPrefab.GetComponent<TowerScript>();
             towerScript.fireRate = rockTowerData.fireRate[currentLevel];
             towerScript.damage = rockTowerData.damage[currentLevel];
@@ -247,12 +247,15 @@ public class ShopTower : MonoBehaviour
         }
         else if (currentTower == 3)
         {
+            gameManager.coins -= poisonTowerData.price[currentLevel];
             PoisonTower towerScript = poisonTowerData.towerPrefab.GetComponent<PoisonTower>();
             towerScript.damage = poisonTowerData.damage[currentLevel];
 
         }
 
         currentLevel++;
+
+        CloseTowerUpgrade();
     }
 
 
@@ -275,10 +278,25 @@ public class ShopTower : MonoBehaviour
 
     void UpdateUpgradeUI()
     {
+
+
+        upgradeText.text = "Upgrade to Level " + (currentLevel + 1);
+
         if (currentTower == 1)
         {
             float sellPrice = freezeTowerData.price[currentLevel - 1] * 0.75f;
             sellPriceText.text = "Sell for " + sellPrice.ToString();
+
+            if (currentLevel == 5)
+            {
+                upgradeText.text = "Max Level!";
+                upgradeTowerPriceText.text = "Max";
+                upgradeTowerPriceText.color = Color.black;
+                upgradeTowerButton.interactable = false;
+                return;
+            }
+
+            upgradeTowerPriceText.text = freezeTowerData.price[currentLevel].ToString();
 
             if (gameManager.coins < freezeTowerData.price[currentLevel])
             {
@@ -296,6 +314,17 @@ public class ShopTower : MonoBehaviour
             float sellPrice = rockTowerData.price[currentLevel - 1] * 0.75f;
             sellPriceText.text = "Sell for " + sellPrice.ToString();
 
+            if (currentLevel == 5)
+            {
+                upgradeText.text = "Max Level!";
+                upgradeTowerPriceText.text = "Max";
+                upgradeTowerPriceText.color = Color.black;
+                upgradeTowerButton.interactable = false;
+                return;
+            }
+
+            upgradeTowerPriceText.text = rockTowerData.price[currentLevel].ToString();
+
             if (gameManager.coins < rockTowerData.price[currentLevel])
             {
                 upgradeTowerPriceText.color = Color.red;
@@ -311,6 +340,17 @@ public class ShopTower : MonoBehaviour
         {
             float sellPrice = poisonTowerData.price[currentLevel - 1] * 0.75f;
             sellPriceText.text = "Sell for " + sellPrice.ToString();
+
+            if (currentLevel == 5)
+            {
+                upgradeText.text = "Max Level!";
+                upgradeTowerPriceText.text = "Max";
+                upgradeTowerPriceText.color = Color.black;
+                upgradeTowerButton.interactable = false;
+                return;
+            }
+
+            upgradeTowerPriceText.text = poisonTowerData.price[currentLevel].ToString();
 
             if (gameManager.coins < poisonTowerData.price[currentLevel])
             {
