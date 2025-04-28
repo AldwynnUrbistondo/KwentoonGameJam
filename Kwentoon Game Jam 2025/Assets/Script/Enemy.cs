@@ -5,7 +5,7 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
-    private float _health = 100;
+    private float _health = 50;
 
     public float HP
     {
@@ -42,7 +42,11 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public void TakeDamage(Transform bullet)
     {
-        Debug.Log("Hit Success");
+        _health -= 20;
+        if (_health <= 0)
+        {
+            Destroy(gameObject);
+        }
         StartCoroutine(KnockBack(bullet));
     }
 
