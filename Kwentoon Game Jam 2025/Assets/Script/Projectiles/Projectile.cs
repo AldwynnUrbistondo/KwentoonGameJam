@@ -11,7 +11,7 @@ public class Projectile : MonoBehaviour
     public void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        Destroy(gameObject, 5);
+        Destroy(gameObject, 3);
     }
 
     public void Shoot()

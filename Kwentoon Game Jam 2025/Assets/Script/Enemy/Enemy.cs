@@ -7,7 +7,9 @@ public class Enemy : MonoBehaviour, IDamageable
 {
     [SerializeField] private float _health = 50;
     [SerializeField] private float _speed = 2;
+    [SerializeField] private bool _isDying = false;
     [SerializeField] private SpriteRenderer _sprite;
+    public float coinsDrop;
     public float HP
     {
         get { return _health; } 
@@ -18,6 +20,12 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         get { return _speed; }
         set { _speed = value; }
+    }
+
+    public bool IsDying
+    {
+        get { return _isDying; }
+        set { _isDying = value; }
     }
 
     public SpriteRenderer Sprite
@@ -43,6 +51,7 @@ public class Enemy : MonoBehaviour, IDamageable
     void Update()
     {
         GoToBasePosition();
+        CheckHealth();
     }
 
     void GoToBasePosition()
@@ -59,9 +68,29 @@ public class Enemy : MonoBehaviour, IDamageable
         HP -= damage;
         if (HP <= 0)
         {
-            Destroy(gameObject);
+            Die();
         }
-        StartCoroutine(KnockBack(bullet));
+        else
+        {
+            StartCoroutine(KnockBack(bullet));
+        }
+            
+    }
+
+    public void CheckHealth()
+    {
+        if (HP <= 0)
+        {
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        IsDying = true;
+        GameManager gameManager = FindObjectOfType<GameManager>();
+        gameManager.coins += coinsDrop;
+        Destroy(gameObject);
     }
 
     IEnumerator KnockBack(Transform bullet)

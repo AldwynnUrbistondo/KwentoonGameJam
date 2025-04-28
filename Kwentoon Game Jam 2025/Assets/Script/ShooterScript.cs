@@ -39,7 +39,7 @@ public class ShooterScript : MonoBehaviour
        
     }
 
-    public void FindNearestEnemy()
+    public virtual void FindNearestEnemy()
     {
         nearestEnemyDistance = Mathf.Infinity;
         nearestEnemy = null;
@@ -93,7 +93,7 @@ public class ShooterScript : MonoBehaviour
         }
     }
 
-    public void OnTriggerEnter2D(Collider2D actor)
+    public virtual void OnTriggerEnter2D(Collider2D actor)
     {
         Enemy enemy = actor.GetComponent<Enemy>();
 
@@ -103,7 +103,7 @@ public class ShooterScript : MonoBehaviour
         }
     }
 
-    public void OnTriggerExit2D(Collider2D actor)
+    public virtual void OnTriggerExit2D(Collider2D actor)
     {
         Enemy enemy = actor.GetComponent<Enemy>();
 
@@ -113,7 +113,7 @@ public class ShooterScript : MonoBehaviour
         }
     }
 
-    public void CleanEnemyList()
+    public virtual void CleanEnemyList()
     {
         enemyInRange.RemoveAll(enemy => enemy == null);
     }
