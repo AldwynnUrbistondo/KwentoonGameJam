@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class FreezeProjectile : Projectile
 {
+    public float slow;
+
     public override void OnTriggerEnter2D(Collider2D actor)
     {
 
@@ -13,8 +15,7 @@ public class FreezeProjectile : Projectile
             damageable.TakeDamage(transform, damage);
             damageable.Sprite.color = Color.blue;
 
-            damageable.Speed -= 2;
-            damageable.Speed = Mathf.Clamp(damageable.Speed, 0.5f, float.MaxValue);
+            damageable.Speed = slow;
 
             Destroy(gameObject);
         }

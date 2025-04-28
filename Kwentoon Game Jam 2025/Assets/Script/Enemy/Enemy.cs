@@ -35,6 +35,7 @@ public class Enemy : MonoBehaviour, IDamageable
     }
 
     bool isHit = false;
+    public bool isCollision = false;
 
     Transform basePos;
     Rigidbody2D rb;
@@ -56,10 +57,10 @@ public class Enemy : MonoBehaviour, IDamageable
 
     void GoToBasePosition()
     {
-        if (!isHit)
+        if (!isHit && !isCollision)
         {
             Vector2 direction = (basePos.position - transform.position).normalized;
-            rb.velocity = direction * _speed;
+            rb.velocity = direction * Speed;
         }
     }
 
@@ -101,5 +102,24 @@ public class Enemy : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(0.2f);
         rb.velocity = Vector2.zero;
         isHit = false;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Tower"))
+        {
+            isCollision = true;
+
+            Vector2 bounceDirection = (transform.position - collision.transform.position).normalized;
+            rb.velocity = bounceDirection * Speed;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Tower"))
+        {
+            isCollision = false;
+        }
     }
 }

@@ -10,9 +10,11 @@ public class GameManager : MonoBehaviour
     public int wave;
     public float coins;
 
+    public static bool isPause;
+
     void Start()
     {
-        
+        isPause = false;
     }
 
     // Update is called once per frame

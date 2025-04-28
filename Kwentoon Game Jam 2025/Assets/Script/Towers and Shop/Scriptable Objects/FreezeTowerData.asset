@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd07fe2050167bf48a7f3ce54b70cdfe, type: 3}
+  m_Name: FreezeTowerData
+  m_EditorClassIdentifier: 
+  name: Freeze Tower
+  maxLevel: 5
+  towerPrefab: {fileID: 91168040241462398, guid: 10911ebcf28fccb4fbde6407716e96eb, type: 3}
+  price:
+  - 100
+  - 200
+  - 500
+  - 1000
+  - 1500
+  fireRate:
+  - 1
+  - 0.75
+  - 0.5
+  - 0.25
+  - 0.2
+  damage:
+  - 7
+  - 9
+  - 12
+  - 15
+  - 20
+  critRate:
+  - 5
+  - 10
+  - 15
+  - 20
+  - 25
+  critDamage:
+  - 0.5
+  - 0.75
+  - 1
+  - 1.5
+  - 2
+  slowBonus:
+  - 2
+  - 1.75
+  - 1.5
+  - 1
+  - 0.5

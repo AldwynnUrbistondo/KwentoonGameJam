@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : ShooterScript
+public class PlayerController : MonoBehaviour
 {
     [Header("Player Control")]
     public float movementSpeed;
+    Rigidbody2D rb;
 
     Vector2 moveInput;
 
@@ -16,24 +17,25 @@ public class PlayerController : ShooterScript
 
     public Transform mouseTransform;
 
-    public override void Update()
+    void Start()
     {
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePos.z = 0f;
-        mouseTransform.position = mousePos;
+        rb = GetComponent<Rigidbody2D>();
+    }
 
-        dashForce = movementSpeed * 4;
-
-        PlayerMovement();
-        FindNearestEnemy();
-        CleanEnemyList();
-
-        fireInterval += Time.deltaTime;
-        if (fireInterval >= fireRate && Input.GetMouseButton(0))
+    public void Update()
+    {
+       
+        if (!GameManager.isPause)
         {
-            ShootEnemy(damage);
-            fireInterval = 0;
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mousePos.z = 0f;
+            mouseTransform.position = mousePos;
+
+            dashForce = movementSpeed * 4;
+
+            PlayerMovement();
         }
+        
         
     }
 
@@ -69,18 +71,4 @@ public class PlayerController : ShooterScript
         isDashing = false;
     }
 
-    public override void ShootEnemy(float damage)
-    {
-        if (nearestEnemy != null)
-        {
-            float finalDamage = CritCalculation(damage);
-
-            GameObject prj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-            Projectile prjScript = prj.GetComponent<Projectile>();
-            prjScript.target = mouseTransform;
-            prjScript.damage = finalDamage;
-            prjScript.Shoot();
-        }
-
-    }
 }
