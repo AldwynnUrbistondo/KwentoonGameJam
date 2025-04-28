@@ -7,6 +7,7 @@ using JetBrains.Annotations;
 
 public class ShopTower : MonoBehaviour
 {
+    #region Variables
 
     public TextMeshProUGUI popUpText;
     GameManager gameManager;
@@ -49,6 +50,8 @@ public class ShopTower : MonoBehaviour
     public TowerData rockTowerData;
     public TowerData poisonTowerData;
 
+    #endregion
+
     private void Start()
     {
         SetUI();
@@ -84,23 +87,6 @@ public class ShopTower : MonoBehaviour
         }
     }
 
-    void OpenTowerShop()
-    {
-        GameManager.isPause = true;
-        Time.timeScale = 0f;
-
-        shopPanel.gameObject.SetActive(true);
-        UpdateShopUI();
-    }
-
-    void CloseTowerShop()
-    {
-        GameManager.isPause = false;
-        Time.timeScale = 1f;
-
-        shopPanel.gameObject.SetActive(false);
-    }
-
     void SetUI()
     {
         gameManager = FindObjectOfType<GameManager>();
@@ -119,7 +105,25 @@ public class ShopTower : MonoBehaviour
 
         closeUpgradeButton.onClick.AddListener(() => CloseTowerUpgrade());
         sellTowerButton.onClick.AddListener(() => SellTower());
-        upgradeTowerButton.onClick.AddListener(() =>  UpgradeTower());
+        upgradeTowerButton.onClick.AddListener(() => UpgradeTower());
+    }
+
+    #region Buy Towers
+    void OpenTowerShop()
+    {
+        GameManager.isPause = true;
+        Time.timeScale = 0f;
+
+        shopPanel.gameObject.SetActive(true);
+        UpdateShopUI();
+    }
+
+    void CloseTowerShop()
+    {
+        GameManager.isPause = false;
+        Time.timeScale = 1f;
+
+        shopPanel.gameObject.SetActive(false);
     }
 
     void UpdateShopUI()
@@ -222,6 +226,9 @@ public class ShopTower : MonoBehaviour
         CloseTowerShop();
     }
 
+    #endregion
+
+
     void UpgradeTower()
     {
 
@@ -238,7 +245,7 @@ public class ShopTower : MonoBehaviour
         else if (currentTower == 2)
         {
             gameManager.coins -= rockTowerData.price[currentLevel];
-            TowerScript towerScript = rockTowerData.towerPrefab.GetComponent<TowerScript>();
+            TowerScript towerScript = GetComponentInChildren<TowerScript>();
             towerScript.fireRate = rockTowerData.fireRate[currentLevel];
             towerScript.damage = rockTowerData.damage[currentLevel];
             towerScript.critRate = rockTowerData.critRate[currentLevel];
@@ -248,7 +255,7 @@ public class ShopTower : MonoBehaviour
         else if (currentTower == 3)
         {
             gameManager.coins -= poisonTowerData.price[currentLevel];
-            PoisonTower towerScript = poisonTowerData.towerPrefab.GetComponent<PoisonTower>();
+            PoisonTower towerScript = GetComponentInChildren<PoisonTower>();
             towerScript.damage = poisonTowerData.damage[currentLevel];
 
         }
@@ -259,6 +266,7 @@ public class ShopTower : MonoBehaviour
     }
 
 
+    #region Upgrade Towers
     void OpenTowerUpgrade()
     {
         GameManager.isPause = true;
@@ -402,4 +410,6 @@ public class ShopTower : MonoBehaviour
 
         CloseTowerUpgrade();
     }
+
+    #endregion
 }
