@@ -5,7 +5,10 @@ using UnityEngine;
 public interface IDamageable
 {
     public float HP { get; set; }
+    public float Speed { get; set; }
 
-    public void TakeDamage(Transform bullet);
+    public SpriteRenderer Sprite { get; set; }
+
+    public void TakeDamage(Transform bullet, float damage);
 
 }

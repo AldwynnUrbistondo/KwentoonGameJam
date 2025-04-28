@@ -2,20 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : ShooterScript
 {
-    //[System.NonSerialized]
-    public List<Enemy> enemyInRange = new List<Enemy>();
-
-    public Rigidbody2D rb;
+    [Header("Player Control")]
     public float movementSpeed;
-    public Transform nearestEnemy;
-    public float nearestEnemyDistance;
-
-    public GameObject projectilePrefab;
-
-    public float fireRate;
-    float fireInterval;
 
     Vector2 moveInput;
 
@@ -26,40 +16,24 @@ public class PlayerController : MonoBehaviour
 
     public Transform mouseTransform;
 
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        nearestEnemyDistance = Mathf.Infinity;
-    }
-
-
-    void Update()
+    public override void Update()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePos.z = 0f; // If 2D
+        mousePos.z = 0f;
         mouseTransform.position = mousePos;
 
         dashForce = movementSpeed * 4;
 
         PlayerMovement();
         FindNearestEnemy();
+        CleanEnemyList();
 
         fireInterval += Time.deltaTime;
-        if (Input.GetMouseButton(0) && fireInterval >= fireRate)
+        if (fireInterval >= fireRate && Input.GetMouseButton(0))
         {
-            ShootEnemy();
+            ShootEnemy(damage);
             fireInterval = 0;
         }
-        
-
-        /*
-        fireInterval += Time.deltaTime;
-        if (fireInterval >= fireRate)
-        {
-            ShootEnemy();
-            fireInterval = 0;
-        }
-        */
         
     }
 
@@ -80,12 +54,9 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
-                Debug.Log("aff");
                 StartCoroutine(Dash());
                 dashTimer = 0f;
             }
-
-            
         }
     }
 
@@ -93,66 +64,23 @@ public class PlayerController : MonoBehaviour
     {
         isDashing = true;
         rb.velocity = moveInput * dashForce;
-        //rb.AddForce(moveInput * dashForce, ForceMode2D.Impulse);
         yield return new WaitForSeconds(0.1f);
         rb.velocity = Vector2.zero; 
         isDashing = false;
     }
 
-    void OnTriggerEnter2D(Collider2D actor)
-    {
-        Enemy enemy = actor.GetComponent<Enemy>();
-
-        if (enemy != null)
-        {
-            enemyInRange.Add(enemy);
-        }
-    }
-
-    void OnTriggerExit2D(Collider2D actor)
-    {
-        Enemy enemy = actor.GetComponent<Enemy>();
-
-        if (enemy != null)
-        {
-            enemyInRange.Remove(enemy);
-        }
-    }
-
-    void FindNearestEnemy()
-    {
-        nearestEnemyDistance = Mathf.Infinity;
-        nearestEnemy = null;
-
-        // If there are no enemies in range, exit early
-        if (enemyInRange.Count == 0)
-        {
-            return;
-        }
-
-
-        foreach (Enemy e in enemyInRange)
-        {
-            float distanceToPlayer = Vector2.Distance(transform.position, e.transform.position);
-
-            if (distanceToPlayer < nearestEnemyDistance)
-            {
-                nearestEnemyDistance = distanceToPlayer;
-                nearestEnemy = e.transform; 
-            }
-        }
-    }
-
-    void ShootEnemy()
+    public override void ShootEnemy(float damage)
     {
         if (nearestEnemy != null)
         {
+            float finalDamage = CritCalculation(damage);
+
             GameObject prj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
             Projectile prjScript = prj.GetComponent<Projectile>();
-            prjScript.target = nearestEnemy;
             prjScript.target = mouseTransform;
+            prjScript.damage = finalDamage;
             prjScript.Shoot();
         }
-        
+
     }
 }

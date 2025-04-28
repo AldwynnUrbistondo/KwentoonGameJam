@@ -5,12 +5,25 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
-    private float _health = 50;
-
+    [SerializeField] private float _health = 50;
+    [SerializeField] private float _speed = 2;
+    [SerializeField] private SpriteRenderer _sprite;
     public float HP
     {
         get { return _health; } 
         set { _health = value; }
+    }
+
+    public float Speed
+    {
+        get { return _speed; }
+        set { _speed = value; }
+    }
+
+    public SpriteRenderer Sprite
+    {
+        get { return _sprite; }
+        set { _sprite = value; }
     }
 
     bool isHit = false;
@@ -18,14 +31,15 @@ public class Enemy : MonoBehaviour, IDamageable
     Transform basePos;
     Rigidbody2D rb;
 
-    // Start is called before the first frame update
+
     void Start()
     {
+        _sprite = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         basePos = GameObject.FindWithTag("Base").transform;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         GoToBasePosition();
@@ -36,14 +50,14 @@ public class Enemy : MonoBehaviour, IDamageable
         if (!isHit)
         {
             Vector2 direction = (basePos.position - transform.position).normalized;
-            rb.velocity = direction * 2;
+            rb.velocity = direction * _speed;
         }
     }
 
-    public void TakeDamage(Transform bullet)
+    public void TakeDamage(Transform bullet, float damage)
     {
-        _health -= 20;
-        if (_health <= 0)
+        HP -= damage;
+        if (HP <= 0)
         {
             Destroy(gameObject);
         }
