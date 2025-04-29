@@ -1,36 +1,99 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    public GameObject enemyPrefab;
+    public GameObject basicEnemyPrefab;
+    public GameObject tankEnemyPrefab;
     public CircleCollider2D spawnArea;
-    public float enemySpawnRate;
-    float enemyInterval = 0;
+    public Transform[] spawnLocations;
+ 
+    [SerializeField] public List<GameObject> enemyPrefabs = new List<GameObject>();
+    public float totalSpawnTime = 30f;
 
-    private void Update()
+    public int numOfBasicEnemies;
+    public int numOfTankEnemies;
+    public int addBasicEnemies;
+    public int addTankEnemies;
+    
+    public bool canAddTankEnemies = false;
+
+    private void Start()
     {
-        SpawnEnemy();
+        StartWave();
     }
 
-
-    public void SpawnEnemy()
+    IEnumerator SpawnEnemies()
     {
-        enemyInterval += Time.deltaTime;
-        if (enemyInterval >= enemySpawnRate)
+
+        float delay = totalSpawnTime / enemyPrefabs.Count;
+
+        foreach (GameObject e in enemyPrefabs)
         {
-            Vector2 center = spawnArea.transform.position;
+            /*Vector2 center = spawnArea.transform.position;
             float radius = spawnArea.radius * spawnArea.transform.lossyScale.x;
-
             float randomAngle = Random.Range(0f, 360f) * Mathf.Deg2Rad;
+            Vector2 spawnPosition = center + new Vector2(Mathf.Cos(randomAngle), Mathf.Sin(randomAngle)) * radius;*/
 
-            Vector2 spawnPosition = center + new Vector2(Mathf.Cos(randomAngle), Mathf.Sin(randomAngle)) * radius;
+            //Instantiate(e, spawnPosition, Quaternion.identity);
 
-            Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+            int randomLoc = Random.Range(0, spawnLocations.Length);
+            Instantiate(e, spawnLocations[randomLoc].position, Quaternion.identity);
 
-            enemyInterval = 0;
+            yield return new WaitForSeconds(delay);
         }
-       
+
+        CalculateNextWave();
+        
+        yield return new WaitForSeconds(5);
+
+        StartWave();
+    }
+
+    void StartWave()
+    {
+        for (int i = 0; i < numOfBasicEnemies; i++)
+        {
+            enemyPrefabs.Add(basicEnemyPrefab);
+        }
+
+        if (canAddTankEnemies)
+        {
+            for (int i = 0; i < numOfTankEnemies; i++)
+            {
+                enemyPrefabs.Add(tankEnemyPrefab);
+            }
+        }
+        Shuffle(enemyPrefabs);
+        StartCoroutine(SpawnEnemies());
+    }
+
+    void CalculateNextWave()
+    {
+        canAddTankEnemies = false;
+
+        enemyPrefabs.Clear();
+        numOfBasicEnemies += addBasicEnemies;
+
+        GameManager.wave++;
+
+        if (GameManager.wave % 5  == 0)
+        {
+            numOfTankEnemies += addTankEnemies;
+            canAddTankEnemies = true;
+        }
+    }
+
+    void Shuffle<T>(List<T> list)
+    {
+        for (int i = list.Count - 1; i > 0; i--)
+        {
+            int randomIndex = Random.Range(0, i + 1);
+            T temp = list[i];
+            list[i] = list[randomIndex];
+            list[randomIndex] = temp;
+        }
     }
 }

@@ -73,7 +73,7 @@ public class Enemy : MonoBehaviour, IDamageable
         }
         else
         {
-            StartCoroutine(KnockBack(bullet));
+            //StartCoroutine(KnockBack(bullet));
         }
             
     }

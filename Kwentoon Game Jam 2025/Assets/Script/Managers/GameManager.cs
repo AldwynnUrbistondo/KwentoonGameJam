@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI coinsText;
     public TextMeshProUGUI waveText;
 
-    public int wave;
+    public static int wave;
     public float coins;
 
     public static bool isPause;
@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         isPause = false;
+        wave = 1;
     }
 
     // Update is called once per frame
@@ -26,5 +27,6 @@ public class GameManager : MonoBehaviour
     void UIUpdate()
     {
         coinsText.text = "Coins " + coins.ToString();
+        waveText.text = "Wave: " + wave.ToString();
     }
 }
