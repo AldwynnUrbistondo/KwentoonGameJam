@@ -7,6 +7,8 @@ public class SpawnManager : MonoBehaviour
 {
     public GameObject basicEnemyPrefab;
     public GameObject tankEnemyPrefab;
+    public GameObject speedyEnemyPrefab;
+
     public CircleCollider2D spawnArea;
     public Transform[] spawnLocations;
  
@@ -15,10 +17,16 @@ public class SpawnManager : MonoBehaviour
 
     public int numOfBasicEnemies;
     public int numOfTankEnemies;
+    public int numOfSpeedyEnemies;
+
+
     public int addBasicEnemies;
     public int addTankEnemies;
+    public int addSpeedyEnemies;
     
     public bool canAddTankEnemies = false;
+
+    public float hpMultiplier;
 
     private void Start()
     {
@@ -66,6 +74,14 @@ public class SpawnManager : MonoBehaviour
                 enemyPrefabs.Add(tankEnemyPrefab);
             }
         }
+        if (numOfSpeedyEnemies > 0)
+        {
+            for (int i = 0; i < numOfSpeedyEnemies; i++)
+            {
+                enemyPrefabs.Add(speedyEnemyPrefab);
+            }
+        }
+        
         Shuffle(enemyPrefabs);
         StartCoroutine(SpawnEnemies());
     }
@@ -79,10 +95,15 @@ public class SpawnManager : MonoBehaviour
 
         GameManager.wave++;
 
-        if (GameManager.wave % 5  == 0)
+        if (GameManager.wave % 5 == 0)
         {
             numOfTankEnemies += addTankEnemies;
             canAddTankEnemies = true;
+        }
+
+        if (GameManager.wave > 5)
+        {
+            numOfSpeedyEnemies += addSpeedyEnemies;
         }
     }
 

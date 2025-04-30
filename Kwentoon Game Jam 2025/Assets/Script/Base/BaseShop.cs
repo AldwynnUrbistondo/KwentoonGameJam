@@ -64,7 +64,14 @@ public class BaseShop : MonoBehaviour
 
     void SetUI()
     {
+        gameManager = FindObjectOfType<GameManager>();
+
         closeShopButton.onClick.AddListener(() => CloseUpgradeShop());
+
+        upgradeDamageButton.onClick.AddListener(() => UpgradeDamage());
+        upgradeFireRateButton.onClick.AddListener(() => UpgradeFireRate());
+        upgradeCritRateButton.onClick.AddListener(() => UpgradeCritRate());
+        upgradeCritDamageButton.onClick.AddListener(() => UpgradeCritDamage());
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -109,12 +116,136 @@ public class BaseShop : MonoBehaviour
             damagePriceText.text = "Max";
             damagePriceText.color = Color.black;
             upgradeDamageButton.interactable = false;
-            return;
+        }
+        else
+        {
+            damagePriceText.text = damagePrice[currentDamageLevel].ToString();
+
+            if (gameManager.coins < damagePrice[currentDamageLevel])
+            {
+                damagePriceText.color = Color.red;
+                upgradeDamageButton.interactable = false;
+            }
+            else
+            {
+                damagePriceText.color = Color.black;
+                upgradeDamageButton.interactable = true;
+            }
+        }
+
+        if (currentFireRateLevel == maxFireRateLevel)
+        {
+            fireRatePriceText.text = "Max";
+            fireRatePriceText.color = Color.black;
+            upgradeFireRateButton.interactable = false;
+        }
+        else
+        {
+            fireRatePriceText.text = fireRatePrice[currentFireRateLevel].ToString();
+
+            if (gameManager.coins < fireRatePrice[currentFireRateLevel])
+            {
+                fireRatePriceText.color = Color.red;
+                upgradeFireRateButton.interactable = false;
+            }
+            else
+            {
+                fireRatePriceText.color = Color.black;
+                upgradeFireRateButton.interactable = true;
+            }
+        }
+
+        if (currentCritRateLevel == maxCritRateLevel)
+        {
+            critRatePriceText.text = "Max";
+            critRatePriceText.color = Color.black;
+            upgradeCritRateButton.interactable = false;
+        }
+        else
+        {
+            critRatePriceText.text = critRatePrice[currentCritRateLevel].ToString();
+
+            if (gameManager.coins < critRatePrice[currentCritRateLevel])
+            {
+                critRatePriceText.color = Color.red;
+                upgradeCritRateButton.interactable = false;
+            }
+            else
+            {
+                critRatePriceText.color = Color.black;
+                upgradeCritRateButton.interactable = true;
+            }
+        }
+
+        if (currentCritDamageLevel == maxCritDamageLevel)
+        {
+            critDamagePriceText.text = "Max";
+            critDamagePriceText.color = Color.black;
+            upgradeCritDamageButton.interactable = false;
+        }
+        else
+        {
+            critDamagePriceText.text = critDamagePrice[currentCritDamageLevel].ToString();
+
+            if (gameManager.coins < critDamagePrice[currentCritDamageLevel])
+            {
+                critDamagePriceText.color = Color.red;
+                upgradeCritDamageButton.interactable = false;
+            }
+            else
+            {
+                critDamagePriceText.color = Color.black;
+                upgradeCritDamageButton.interactable = true;
+            }
         }
     }
 
     void UpgradeDamage()
     {
         gameManager.coins -= damagePrice[currentDamageLevel];
+
+        PlayerAttack playerStats = FindObjectOfType<PlayerAttack>();
+        playerStats.damage = damageValue[currentDamageLevel];
+
+        currentDamageLevel++;
+
+        UpdateShopUI();
     }
+
+    void UpgradeFireRate()
+    {
+        gameManager.coins -= fireRatePrice[currentFireRateLevel];
+
+        PlayerAttack playerStats = FindObjectOfType<PlayerAttack>();
+        playerStats.fireRate = fireRateValue[currentFireRateLevel];
+
+        currentFireRateLevel++;
+
+        UpdateShopUI();
+    }
+
+    void UpgradeCritRate()
+    {
+        gameManager.coins -= critRatePrice[currentCritRateLevel];
+
+        PlayerAttack playerStats = FindObjectOfType<PlayerAttack>();
+        playerStats.critRate = critRateValue[currentCritRateLevel];
+
+        currentCritRateLevel++;
+
+        UpdateShopUI();
+    }
+
+    void UpgradeCritDamage()
+    {
+        gameManager.coins -= critDamagePrice[currentCritDamageLevel];
+
+        PlayerAttack playerStats = FindObjectOfType<PlayerAttack>();
+        playerStats.critDamage = critDamageValue[currentCritDamageLevel];
+
+        currentCritDamageLevel++;
+
+        UpdateShopUI();
+    }
+
 }

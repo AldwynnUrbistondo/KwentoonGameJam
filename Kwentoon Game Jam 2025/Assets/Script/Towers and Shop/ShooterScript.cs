@@ -10,6 +10,8 @@ public class ShooterScript : MonoBehaviour
     public float nearestEnemyDistance;
     public GameObject projectilePrefab;
 
+    public Transform firePoint;
+
     [HideInInspector] public Rigidbody2D rb;
 
     [Header("Shooter Stats")]
@@ -18,6 +20,8 @@ public class ShooterScript : MonoBehaviour
     public float damage;
     public float critRate;
     public float critDamage;
+
+
 
     public virtual void Start()
     {
@@ -70,7 +74,7 @@ public class ShooterScript : MonoBehaviour
         {
             float finalDamage = CritCalculation(damage);
 
-            GameObject prj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+            GameObject prj = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
             Projectile prjScript = prj.GetComponent<Projectile>();
             prjScript.target = nearestEnemy;
             prjScript.damage = finalDamage;
