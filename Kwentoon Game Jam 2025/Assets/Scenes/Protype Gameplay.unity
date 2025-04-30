@@ -261,7 +261,7 @@ MonoBehaviour:
   shopPanel: {fileID: 1866332908}
   damagePrice:
   - 50
-  - 150
+  - 125
   - 750
   - 1500
   - 2250
