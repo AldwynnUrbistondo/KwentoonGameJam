@@ -15,6 +15,7 @@ MonoBehaviour:
   name: Freeze Tower
   maxLevel: 5
   towerPrefab: {fileID: 6104207259742410078, guid: 82443e640cc24ae40a953bc54eb25101, type: 3}
+  towerCardImage: {fileID: 4964860920970655494, guid: 053449d74fb45e940a393f1f38a6dcaf, type: 3}
   price:
   - 100
   - 200

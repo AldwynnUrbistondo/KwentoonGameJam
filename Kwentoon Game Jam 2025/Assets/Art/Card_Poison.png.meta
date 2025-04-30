@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 02c467f79eb224a4a8ab8969b10befb5
+guid: fcc35fec528fe40429fbe729947c7d37
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6554821690068816946
-    second: betlogz (1)_0
+      213: -3816374873557753560
+    second: Card_Poison_0
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -119,13 +119,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: betlogz (1)_0
+      name: Card_Poison_0
       rect:
         serializedVersion: 2
-        x: 90
-        y: 110
-        width: 130
-        height: 120
+        x: 11
+        y: 1
+        width: 42
+        height: 69
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -133,8 +133,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 234d392299767fa50800000000000000
-      internalID: 6554821690068816946
+      spriteID: 8212dd3c543890bc0800000000000000
+      internalID: -3816374873557753560
       vertices: []
       indices: 
       edges: []

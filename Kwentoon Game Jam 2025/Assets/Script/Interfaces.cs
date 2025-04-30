@@ -11,6 +11,8 @@ public interface IDamageable
     public float Speed { get; set; }
     public SpriteRenderer Sprite { get; set; }
 
+    public bool IsFrozen { get; set; }
+
     public void TakeDamage(Transform bullet, float damage);
 
     public void Die();

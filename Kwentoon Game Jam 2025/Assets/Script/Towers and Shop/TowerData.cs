@@ -8,6 +8,7 @@ public class TowerData : ScriptableObject
     public string name;
     public int maxLevel;
     public GameObject towerPrefab;
+    public Sprite towerCardImage;
 
     [Header("Stats")]
     public float[] price;

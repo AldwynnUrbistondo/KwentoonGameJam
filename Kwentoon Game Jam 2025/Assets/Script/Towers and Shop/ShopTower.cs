@@ -24,6 +24,7 @@ public class ShopTower : MonoBehaviour
 
     [Header("Tower Prefabs")]
     public GameObject emptyTowerPrefab;
+    public Image towerImage;
 
     [Header("Buttons")]
     public Button closeShopButton;
@@ -307,7 +308,9 @@ public class ShopTower : MonoBehaviour
         if (currentTower == 1)
         {
             float sellPrice = freezeTowerData.price[currentLevel - 1] * 0.75f;
-            sellPriceText.text = "Sell for " + sellPrice.ToString("0");
+            sellPriceText.text = sellPrice.ToString("0");
+
+            towerImage.sprite = freezeTowerData.towerCardImage;
 
             if (currentLevel == 5)
             {
@@ -334,7 +337,9 @@ public class ShopTower : MonoBehaviour
         else if (currentTower == 2)
         {
             float sellPrice = rockTowerData.price[currentLevel - 1] * 0.75f;
-            sellPriceText.text = "Sell for " + sellPrice.ToString("0");
+            sellPriceText.text = sellPrice.ToString("0");
+
+            towerImage.sprite = rockTowerData.towerCardImage;
 
             if (currentLevel == 5)
             {
@@ -361,7 +366,9 @@ public class ShopTower : MonoBehaviour
         else if (currentTower == 3)
         {
             float sellPrice = poisonTowerData.price[currentLevel - 1] * 0.75f;
-            sellPriceText.text = "Sell for " + sellPrice.ToString("0");
+            sellPriceText.text = sellPrice.ToString("0");
+
+            towerImage.sprite = poisonTowerData.towerCardImage;
 
             if (currentLevel == 5)
             {

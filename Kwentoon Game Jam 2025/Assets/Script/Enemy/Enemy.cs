@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour, IDamageable
     [SerializeField] private float _speed = 2;
     [SerializeField] private bool _isDying = false;
     [SerializeField] private SpriteRenderer _sprite;
+    [SerializeField] private bool _isFrozen = false;
     IAlly ally;
     public float coinsDrop;
     public float attackSpeed;
@@ -41,6 +42,12 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         get { return _sprite; }
         set { _sprite = value; }
+    }
+
+    public bool IsFrozen
+    {
+        get { return _isFrozen; }
+        set { _isFrozen = value; }
     }
 
     [Header("Booleans")]
@@ -91,6 +98,8 @@ public class Enemy : MonoBehaviour, IDamageable
                 //StartCoroutine(KnockBack(bullet));
             }
 
+            StartCoroutine((HitColor()));
+
         }
             
     }
@@ -109,6 +118,42 @@ public class Enemy : MonoBehaviour, IDamageable
         GameManager gameManager = FindObjectOfType<GameManager>();
         gameManager.coins += coinsDrop;
         Destroy(gameObject);
+    }
+
+    IEnumerator HitColor()
+    {
+        SpriteRenderer sprite = GetComponent<SpriteRenderer>();
+
+        Color colorA;
+        if (IsFrozen)
+        {
+            colorA = new Color(0.68f, 0.85f, 0.9f); // LightBlue (RGB: 173, 216, 230)
+        }
+        else
+        {
+            colorA = Color.white;
+        }
+
+        Color colorB = Color.red;
+        float duration = 0.1f;
+        float t = 0;
+
+        while (t < 1)
+        {
+            t += Time.deltaTime / duration;
+            sprite.color = Color.Lerp(colorA, colorB, t);
+            yield return null;
+        }
+
+        t = 0;
+
+        while (t < 1)
+        {
+            t += Time.deltaTime / duration;
+            sprite.color = Color.Lerp(colorB, colorA, t);
+            yield return null;
+        }
+
     }
 
     IEnumerator KnockBack(Transform bullet)

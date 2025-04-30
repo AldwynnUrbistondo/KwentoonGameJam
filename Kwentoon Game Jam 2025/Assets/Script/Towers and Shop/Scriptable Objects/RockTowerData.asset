@@ -15,6 +15,7 @@ MonoBehaviour:
   name: Rock Tower
   maxLevel: 5
   towerPrefab: {fileID: 6039735758090400521, guid: 3411e0cdc7eae9147b1035cf4ef73c7d, type: 3}
+  towerCardImage: {fileID: 4522322636742056615, guid: 52bb2acb3efbd194bae5ab2f93cfca10, type: 3}
   price:
   - 150
   - 300

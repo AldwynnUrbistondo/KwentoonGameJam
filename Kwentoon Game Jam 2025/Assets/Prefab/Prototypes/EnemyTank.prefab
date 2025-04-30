@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -120,11 +120,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06977128ec38ee243acf00c4dc449097, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 200
+  _health: 300
   _speed: 2
   _isDying: 0
   _sprite: {fileID: 0}
-  coinsDrop: 250
+  _isFrozen: 0
+  coinsDrop: 100
   attackSpeed: 1
   attackDamage: 35
   damageCanvas: {fileID: 5000139228797143466, guid: 5ee4e6569585a7d47885cc65cd118092, type: 3}

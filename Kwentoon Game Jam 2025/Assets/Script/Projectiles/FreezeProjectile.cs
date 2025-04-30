@@ -12,8 +12,10 @@ public class FreezeProjectile : Projectile
         IDamageable damageable = actor.GetComponent<IDamageable>();
         if (damageable != null)
         {
-            damageable.TakeDamage(transform, damage);
+            
             damageable.Sprite.color = new Color(0.68f, 0.85f, 0.9f); // LightBlue (RGB: 173, 216, 230)
+            damageable.IsFrozen = true;
+            damageable.TakeDamage(transform, damage);
 
             if (damageable.Speed > slow)
             {

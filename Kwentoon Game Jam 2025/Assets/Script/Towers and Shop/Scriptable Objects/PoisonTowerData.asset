@@ -15,6 +15,7 @@ MonoBehaviour:
   name: Poison Tower
   maxLevel: 5
   towerPrefab: {fileID: 4465840571314963465, guid: dd011a99f92c67b41bd300bb86035bd3, type: 3}
+  towerCardImage: {fileID: -3816374873557753560, guid: fcc35fec528fe40429fbe729947c7d37, type: 3}
   price:
   - 300
   - 600
