@@ -116,7 +116,8 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         IsDying = true;
         GameManager gameManager = FindObjectOfType<GameManager>();
-        gameManager.coins += coinsDrop;
+        //gameManager.coins += coinsDrop;
+        gameManager.AddCoins(coinsDrop);
         Destroy(gameObject);
     }
 

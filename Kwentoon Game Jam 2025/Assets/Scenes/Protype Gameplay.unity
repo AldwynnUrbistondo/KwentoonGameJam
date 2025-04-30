@@ -2580,7 +2580,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coinsText: {fileID: 295815989}
   waveText: {fileID: 1017743179}
+  lerpCoins: 0
   coins: 150
+  lerpDuration: 2
 --- !u!4 &902033666
 Transform:
   m_ObjectHideFlags: 0
