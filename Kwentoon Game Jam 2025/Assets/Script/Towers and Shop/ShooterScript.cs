@@ -73,8 +73,17 @@ public class ShooterScript : MonoBehaviour
         if (nearestEnemy != null)
         {
             float finalDamage = CritCalculation(damage);
+            GameObject prj;
 
-            GameObject prj = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
+            if (firePoint != null)
+            {
+                prj = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
+            }
+            else
+            {
+                prj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+            }
+            
             Projectile prjScript = prj.GetComponent<Projectile>();
             prjScript.target = nearestEnemy;
             prjScript.damage = finalDamage;

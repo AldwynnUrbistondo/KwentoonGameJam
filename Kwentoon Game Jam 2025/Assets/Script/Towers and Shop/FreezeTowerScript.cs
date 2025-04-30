@@ -11,8 +11,17 @@ public class FreezeTowerScript : TowerScript
         if (nearestEnemy != null)
         {
             float finalDamage = CritCalculation(damage);
+            GameObject prj;
 
-            GameObject prj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+            if (firePoint != null)
+            {
+                prj = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
+            }
+            else
+            {
+                prj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+            }
+
             FreezeProjectile prjScript = prj.GetComponent<FreezeProjectile>();
             prjScript.target = nearestEnemy;
             prjScript.damage = finalDamage;

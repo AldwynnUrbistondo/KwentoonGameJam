@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Poison Tower
   maxLevel: 5
-  towerPrefab: {fileID: 1711429923474099263, guid: 53cc498b87b1f3d4f92c818f9072d128, type: 3}
+  towerPrefab: {fileID: 4465840571314963465, guid: dd011a99f92c67b41bd300bb86035bd3, type: 3}
   price:
   - 300
   - 600

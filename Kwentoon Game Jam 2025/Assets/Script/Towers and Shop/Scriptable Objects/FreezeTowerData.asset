@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Freeze Tower
   maxLevel: 5
-  towerPrefab: {fileID: 91168040241462398, guid: 10911ebcf28fccb4fbde6407716e96eb, type: 3}
+  towerPrefab: {fileID: 6104207259742410078, guid: 82443e640cc24ae40a953bc54eb25101, type: 3}
   price:
   - 100
   - 200
-  - 500
-  - 1000
-  - 1500
+  - 750
+  - 2000
+  - 3000
   fireRate:
   - 1
   - 0.75

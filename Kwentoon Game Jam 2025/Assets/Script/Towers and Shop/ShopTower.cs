@@ -12,6 +12,7 @@ public class ShopTower : MonoBehaviour
     public TextMeshProUGUI popUpText;
     GameManager gameManager;
     Vector2 thisPosition;
+    Vector3 towerPos;
 
     public Canvas shopPanel;
     public Canvas upgradePanel;
@@ -96,6 +97,7 @@ public class ShopTower : MonoBehaviour
     {
         gameManager = FindObjectOfType<GameManager>();
         thisPosition = transform.position;
+        towerPos = new Vector3(thisPosition.x, thisPosition.y, -1f);
 
         shopPanel.gameObject.SetActive(false);
 
@@ -182,7 +184,7 @@ public class ShopTower : MonoBehaviour
         }
         Destroy(emptyTower);
 
-        Instantiate(freezeTowerData.towerPrefab, thisPosition, Quaternion.identity, transform);
+        Instantiate(freezeTowerData.towerPrefab, towerPos, Quaternion.identity, transform);
         isTowerEmpty = false;
 
         currentTower = 1;
@@ -205,7 +207,7 @@ public class ShopTower : MonoBehaviour
         }
         Destroy(emptyTower);
 
-        Instantiate(rockTowerData.towerPrefab, thisPosition, Quaternion.identity, transform); 
+        Instantiate(rockTowerData.towerPrefab, towerPos, Quaternion.identity, transform); 
         isTowerEmpty = false;
 
         currentTower = 2; 
@@ -228,7 +230,7 @@ public class ShopTower : MonoBehaviour
         }
         Destroy(emptyTower);
 
-        Instantiate(poisonTowerData.towerPrefab, thisPosition, Quaternion.identity, transform); 
+        Instantiate(poisonTowerData.towerPrefab, towerPos, Quaternion.identity, transform); 
         isTowerEmpty = false;
 
         currentTower = 3; 
@@ -305,7 +307,7 @@ public class ShopTower : MonoBehaviour
         if (currentTower == 1)
         {
             float sellPrice = freezeTowerData.price[currentLevel - 1] * 0.75f;
-            sellPriceText.text = "Sell for " + sellPrice.ToString();
+            sellPriceText.text = "Sell for " + sellPrice.ToString("0");
 
             if (currentLevel == 5)
             {
@@ -332,7 +334,7 @@ public class ShopTower : MonoBehaviour
         else if (currentTower == 2)
         {
             float sellPrice = rockTowerData.price[currentLevel - 1] * 0.75f;
-            sellPriceText.text = "Sell for " + sellPrice.ToString();
+            sellPriceText.text = "Sell for " + sellPrice.ToString("0");
 
             if (currentLevel == 5)
             {
@@ -359,7 +361,7 @@ public class ShopTower : MonoBehaviour
         else if (currentTower == 3)
         {
             float sellPrice = poisonTowerData.price[currentLevel - 1] * 0.75f;
-            sellPriceText.text = "Sell for " + sellPrice.ToString();
+            sellPriceText.text = "Sell for " + sellPrice.ToString("0");
 
             if (currentLevel == 5)
             {

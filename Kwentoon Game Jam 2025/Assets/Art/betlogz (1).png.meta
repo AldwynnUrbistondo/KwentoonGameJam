@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 883162f642e7c444594a0b5f9b9baa60
+guid: 02c467f79eb224a4a8ab8969b10befb5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1997973558389039879
-    second: FreezeTower_0
-  - first:
-      213: -7248018549829185563
-    second: FreezeTower_1
+      213: 6554821690068816946
+    second: betlogz (1)_0
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -122,43 +119,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: FreezeTower_0
+      name: betlogz (1)_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 64
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 90
+        y: 110
+        width: 130
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9fc199562a5c544e0800000000000000
-      internalID: -1997973558389039879
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FreezeTower_1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 64
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5ef4df3d78dd96b90800000000000000
-      internalID: -7248018549829185563
+      spriteID: 234d392299767fa50800000000000000
+      internalID: 6554821690068816946
       vertices: []
       indices: 
       edges: []

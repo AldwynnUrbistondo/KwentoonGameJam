@@ -22,7 +22,6 @@ public class EnemyAttack : MonoBehaviour
         if (ally != null)
         {
             enemy.canMove = false;
-            Debug.Log("hhi");
         }
     }
 }

@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
 
     void UIUpdate()
     {
-        coinsText.text = "Coins " + coins.ToString();
+        coinsText.text = coins.ToString("0");
         waveText.text = "Wave: " + wave.ToString();
     }
 

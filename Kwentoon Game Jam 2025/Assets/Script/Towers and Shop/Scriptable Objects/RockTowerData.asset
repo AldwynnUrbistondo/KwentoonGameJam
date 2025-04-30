@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Rock Tower
   maxLevel: 5
-  towerPrefab: {fileID: 5709050919056690294, guid: a3dccf94fbb341a4ca54f15d5144c3b0, type: 3}
+  towerPrefab: {fileID: 6039735758090400521, guid: 3411e0cdc7eae9147b1035cf4ef73c7d, type: 3}
   price:
   - 150
   - 300
-  - 750
-  - 1250
-  - 2000
+  - 1000
+  - 1500
+  - 3500
   fireRate:
   - 0.7
   - 0.6
