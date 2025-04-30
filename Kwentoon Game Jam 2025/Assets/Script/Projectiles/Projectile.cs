@@ -17,7 +17,7 @@ public class Projectile : MonoBehaviour
     public void Shoot()
     {
         Vector2 direction = (target.position - transform.position).normalized;
-        rb.velocity = direction * 15;
+        rb.velocity = direction * 25;
     }
 
     public virtual void OnTriggerEnter2D(Collider2D actor)

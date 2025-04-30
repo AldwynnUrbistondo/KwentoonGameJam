@@ -7,10 +7,10 @@ public class EnemyHealthBar : MonoBehaviour
 {
     public GameObject healthBarPanel;
 
-    private float _health;
-    private float _maxHealth;
+    public float _health;
+    public float _maxHealth;
 
-    private float lerpTimer;
+    public float lerpTimer;
     public float chipSpeed = 2f;
 
     public Image frontHealthBar;
@@ -18,7 +18,7 @@ public class EnemyHealthBar : MonoBehaviour
 
     IDamageable damageable;
 
-    void Start()
+    public virtual void Start()
     {
         damageable = GetComponentInParent<IDamageable>();
         _maxHealth = damageable.HP;
@@ -27,7 +27,7 @@ public class EnemyHealthBar : MonoBehaviour
         healthBarPanel.SetActive(false);
     }
 
-    void Update()
+    public virtual void Update()
     {
         _health = Mathf.Clamp(_health, 0, _maxHealth);
         _health = damageable.HP;
@@ -55,18 +55,23 @@ public class EnemyHealthBar : MonoBehaviour
         float fillB = backHealthBar.fillAmount;
         float hFraction = _health / _maxHealth;
 
-        // Reset lerp when taking damage
+        // When taking damage
         if (fillB > hFraction)
         {
             lerpTimer = 0f;
-        }
-
-        if (fillB > hFraction)
-        {
             frontHealthBar.fillAmount = hFraction;
             lerpTimer += Time.deltaTime;
             float percentComplete = lerpTimer / chipSpeed;
             backHealthBar.fillAmount = Mathf.Lerp(fillB, hFraction, percentComplete);
+        }
+        // When healing
+        else if (fillF < hFraction)
+        {
+            lerpTimer = 0f;
+            backHealthBar.fillAmount = hFraction;
+            lerpTimer += Time.deltaTime;
+            float percentComplete = lerpTimer / chipSpeed;
+            frontHealthBar.fillAmount = Mathf.Lerp(fillF, hFraction, percentComplete);
         }
     }
 }

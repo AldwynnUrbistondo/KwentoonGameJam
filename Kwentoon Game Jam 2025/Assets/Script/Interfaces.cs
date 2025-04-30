@@ -16,3 +16,17 @@ public interface IDamageable
     public void Die();
 
 }
+
+public interface IAlly
+{
+    public float HP { get; set; }
+
+    public bool IsDying { get; set; }
+
+    public SpriteRenderer Sprite { get; set; }
+
+    public void TakeDamage(Transform bullet, float damage);
+
+    public void Die();
+
+}

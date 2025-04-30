@@ -15,7 +15,11 @@ public class FreezeProjectile : Projectile
             damageable.TakeDamage(transform, damage);
             damageable.Sprite.color = Color.blue;
 
-            damageable.Speed = slow;
+            
+            if (damageable.Speed > slow)
+            {
+                damageable.Speed = slow;
+            }
 
             Destroy(gameObject);
         }

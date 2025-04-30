@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShooterScript : MonoBehaviour
 {
     [Header("Shooter Variables")]
-     public List<Enemy> enemyInRange = new List<Enemy>();
+    public List<Enemy> enemyInRange = new List<Enemy>();
     public Transform nearestEnemy;
     public float nearestEnemyDistance;
     public GameObject projectilePrefab;

@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 4372748749562429238}
   - component: {fileID: 4372748749562429237}
   - component: {fileID: 4372748749562429225}
+  - component: {fileID: 3984532424928545807}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -201,7 +202,12 @@ MonoBehaviour:
   _isDying: 0
   _sprite: {fileID: 0}
   coinsDrop: 20
+  attackSpeed: 1
+  attackDamage: 20
+  damageCanvas: {fileID: 5000139228797143466, guid: 5ee4e6569585a7d47885cc65cd118092, type: 3}
   isCollision: 0
+  canMove: 1
+  isAttacking: 0
 --- !u!58 &4372748749562429225
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -218,6 +224,22 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!58 &3984532424928545807
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4372748749562429236}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1
 --- !u!1 &4758809635049443876
 GameObject:
   m_ObjectHideFlags: 0
@@ -482,6 +504,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBarPanel: {fileID: 1115616183800560523}
+  _health: 0
+  _maxHealth: 0
+  lerpTimer: 0
   chipSpeed: 0.25
   frontHealthBar: {fileID: 5735142999310136676}
   backHealthBar: {fileID: 2570065984171104767}
