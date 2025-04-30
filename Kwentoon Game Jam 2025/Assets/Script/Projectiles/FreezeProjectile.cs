@@ -13,9 +13,8 @@ public class FreezeProjectile : Projectile
         if (damageable != null)
         {
             damageable.TakeDamage(transform, damage);
-            damageable.Sprite.color = Color.blue;
+            damageable.Sprite.color = new Color(0.68f, 0.85f, 0.9f); // LightBlue (RGB: 173, 216, 230)
 
-            
             if (damageable.Speed > slow)
             {
                 damageable.Speed = slow;

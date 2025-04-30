@@ -50,6 +50,9 @@ public class ShopTower : MonoBehaviour
     public TowerData rockTowerData;
     public TowerData poisonTowerData;
 
+    [Header("Level Indicator")]
+    public SpriteRenderer levelIndicator;
+
     #endregion
 
     private void Start()
@@ -59,14 +62,16 @@ public class ShopTower : MonoBehaviour
 
     private void Update()
     {
-        if (isPlayerNear && Input.GetKeyDown(KeyCode.E) && isTowerEmpty)
+        if (isPlayerNear && Input.GetKeyDown(KeyCode.E) && isTowerEmpty && !GameManager.hasLose)
         {
             OpenTowerShop();
         }
-        else if (isPlayerNear && Input.GetKeyDown(KeyCode.E) && !isTowerEmpty)
+        else if (isPlayerNear && Input.GetKeyDown(KeyCode.E) && !isTowerEmpty && !GameManager.hasLose)
         {
             OpenTowerUpgrade();
         }
+
+        LevelIndicatorColor();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -106,6 +111,8 @@ public class ShopTower : MonoBehaviour
         closeUpgradeButton.onClick.AddListener(() => CloseTowerUpgrade());
         sellTowerButton.onClick.AddListener(() => SellTower());
         upgradeTowerButton.onClick.AddListener(() => UpgradeTower());
+
+        levelIndicator.gameObject.SetActive(false);
     }
 
     #region Buy Towers
@@ -181,6 +188,8 @@ public class ShopTower : MonoBehaviour
         currentTower = 1;
         UpgradeTower();
 
+        levelIndicator.gameObject.SetActive(true);
+
         CloseTowerShop();
     }
 
@@ -200,7 +209,9 @@ public class ShopTower : MonoBehaviour
         isTowerEmpty = false;
 
         currentTower = 2; 
-        UpgradeTower();   
+        UpgradeTower();
+
+        levelIndicator.gameObject.SetActive(true);
 
         CloseTowerShop();
     }
@@ -222,6 +233,8 @@ public class ShopTower : MonoBehaviour
 
         currentTower = 3; 
         UpgradeTower();   
+
+        levelIndicator.gameObject.SetActive(true);
 
         CloseTowerShop();
     }
@@ -286,7 +299,6 @@ public class ShopTower : MonoBehaviour
 
     void UpdateUpgradeUI()
     {
-
 
         upgradeText.text = "Upgrade to Level " + (currentLevel + 1);
 
@@ -372,10 +384,13 @@ public class ShopTower : MonoBehaviour
             }
         }
 
+        
     }
 
     void SellTower()
     {
+        levelIndicator.gameObject.SetActive(false);
+
         if (currentTower == 1)
         {
             float sellPrice = freezeTowerData.price[currentLevel - 1] * 0.75f;
@@ -411,5 +426,29 @@ public class ShopTower : MonoBehaviour
         CloseTowerUpgrade();
     }
 
+    void LevelIndicatorColor()
+    {
+        if (levelIndicator.gameObject.activeSelf)
+        {
+            switch (currentLevel)
+            {
+                case 1:
+                    levelIndicator.color = Color.white;
+                    break;
+                case 2:
+                    levelIndicator.color = Color.yellow;
+                    break;
+                case 3:
+                    levelIndicator.color = new Color(1f, 0.5f, 0f); // Orange (RGB: 255, 128, 0)
+                    break;
+                case 4:
+                    levelIndicator.color = Color.red;
+                    break;
+                case 5:
+                    levelIndicator.color = new Color(0.54f, 0.17f, 0.89f); // Violet (RGB: 138, 43, 226)
+                    break;
+            }
+        }
+    }
     #endregion
 }

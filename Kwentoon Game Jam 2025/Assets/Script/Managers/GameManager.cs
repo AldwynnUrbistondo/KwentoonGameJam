@@ -11,10 +11,12 @@ public class GameManager : MonoBehaviour
     public float coins;
 
     public static bool isPause;
+    public static bool hasLose;
 
     void Start()
     {
         isPause = false;
+        hasLose = false;
         wave = 1;
     }
 

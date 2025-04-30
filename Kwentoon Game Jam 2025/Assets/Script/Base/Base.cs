@@ -59,6 +59,7 @@ public class Base : MonoBehaviour, IAlly
     public void Die()
     {
         IsDying = true;
+        GameManager.hasLose = true;
     }
 
     void RegenHP()
