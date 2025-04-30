@@ -24,6 +24,12 @@ public class BaseShop : MonoBehaviour
     public int maxCritRateLevel;
     public int maxCritDamageLevel;
 
+    [Header("Upgrade Value")]
+    public float[] damageValue;
+    public float[] fireRateValue;
+    public float[] critRateValue;
+    public float[] critDamageValue;
+
     [Header("Level")]
     public int currentDamageLevel;
     public int currentFireRateLevel;
@@ -98,6 +104,17 @@ public class BaseShop : MonoBehaviour
 
     void UpdateShopUI()
     {
+        if (currentDamageLevel == maxDamageLevel)
+        {
+            damagePriceText.text = "Max";
+            damagePriceText.color = Color.black;
+            upgradeDamageButton.interactable = false;
+            return;
+        }
+    }
 
+    void UpgradeDamage()
+    {
+        gameManager.coins -= damagePrice[currentDamageLevel];
     }
 }
