@@ -260,26 +260,26 @@ MonoBehaviour:
   popUpText: {fileID: 564798524}
   shopPanel: {fileID: 1866332908}
   damagePrice:
-  - 100
-  - 500
+  - 50
+  - 150
   - 750
   - 1500
   - 2250
   fireRatePrice:
+  - 100
   - 250
-  - 750
   - 1250
   - 2000
   - 3500
   critRatePrice:
+  - 50
+  - 250
+  - 500
+  - 1250
+  - 2500
+  critDamagePrice:
   - 250
   - 750
-  - 1500
-  - 3000
-  - 5000
-  critDamagePrice:
-  - 100
-  - 500
   - 1000
   - 3000
   - 5000
@@ -1093,8 +1093,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -273.8, y: 197.8}
-  m_SizeDelta: {x: 133.5237, y: 47.116}
+  m_AnchoredPosition: {x: -336.11932, y: 197.8}
+  m_SizeDelta: {x: 8.8849, y: 47.116}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &295815989
 MonoBehaviour:
@@ -1159,7 +1159,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}

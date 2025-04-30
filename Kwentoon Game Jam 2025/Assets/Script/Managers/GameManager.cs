@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            Time.timeScale = 4;
+            Time.timeScale = 10;
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {

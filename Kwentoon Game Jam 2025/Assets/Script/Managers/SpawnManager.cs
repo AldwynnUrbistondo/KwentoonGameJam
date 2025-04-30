@@ -26,7 +26,7 @@ public class SpawnManager : MonoBehaviour
     
     public bool canAddTankEnemies = false;
 
-    public float hpMultiplier;
+    public float hpMultiplier = 0;
 
     private void Start()
     {
@@ -48,7 +48,12 @@ public class SpawnManager : MonoBehaviour
             //Instantiate(e, spawnPosition, Quaternion.identity);
 
             int randomLoc = Random.Range(0, spawnLocations.Length);
-            Instantiate(e, spawnLocations[randomLoc].position, Quaternion.identity);
+            GameObject enemy = Instantiate(e, spawnLocations[randomLoc].position, Quaternion.identity);
+            IDamageable damageable = enemy.GetComponent<IDamageable>();
+            if (damageable != null)
+            {
+                damageable.HP += (damageable.HP * hpMultiplier);
+            }
 
             yield return new WaitForSeconds(delay);
         }
@@ -105,6 +110,19 @@ public class SpawnManager : MonoBehaviour
         {
             numOfSpeedyEnemies += addSpeedyEnemies;
         }
+
+        if (GameManager.wave >= 25)
+        {
+            hpMultiplier += 0.25f;
+        }
+        if (GameManager.wave >= 10)
+        {
+            if (GameManager.wave % 5 == 0)
+            {
+                hpMultiplier += 0.25f;
+            }
+        }
+        
     }
 
     void Shuffle<T>(List<T> list)

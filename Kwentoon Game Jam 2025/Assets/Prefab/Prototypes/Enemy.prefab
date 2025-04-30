@@ -202,7 +202,7 @@ MonoBehaviour:
   _isDying: 0
   _sprite: {fileID: 0}
   _isFrozen: 0
-  coinsDrop: 20
+  coinsDrop: 15
   attackSpeed: 1
   attackDamage: 20
   damageCanvas: {fileID: 5000139228797143466, guid: 5ee4e6569585a7d47885cc65cd118092, type: 3}
