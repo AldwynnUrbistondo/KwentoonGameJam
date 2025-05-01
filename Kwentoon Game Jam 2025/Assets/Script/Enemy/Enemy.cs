@@ -66,7 +66,10 @@ public class Enemy : MonoBehaviour, IDamageable
     Animator animator;
     public Transform childToIgnoreFlip;
 
-    float flipInterval = 0;
+    float flipInterval = 3;
+
+    private Vector3 lastPosition;
+    public float currentSpeed;
 
     void Start()
     {
@@ -75,19 +78,35 @@ public class Enemy : MonoBehaviour, IDamageable
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         basePos = GameObject.FindWithTag("Base").transform;
+
+        lastPosition = transform.position;
+
     }
 
     void Update()
     {
+        
         GoToBasePosition();
         CheckHealth();
         AttackBase();
-        Flip();
+        //Flip();
 
         if (IsFrozen)
         {
             animator.speed = 0.5f;
         }
+    }
+
+    void FixedUpdate()
+    {
+        Displacement();
+    }
+
+    void Displacement()
+    {
+        Vector3 displacement = transform.position - lastPosition;
+        currentSpeed = displacement.magnitude / Time.deltaTime;
+        lastPosition = transform.position;
     }
 
     void GoToBasePosition()
@@ -96,6 +115,16 @@ public class Enemy : MonoBehaviour, IDamageable
         {
             Vector2 direction = (basePos.position - transform.position).normalized;
             rb.velocity = direction * Speed;
+            Flip(direction);
+        }
+
+        if (!isAttacking && currentSpeed > 2)
+        {
+            animator.Play("Walk");
+        }
+        else if (!isAttacking && currentSpeed < 2)
+        {
+            animator.Play("Idle");
         }
     }
 
@@ -301,6 +330,7 @@ public class Enemy : MonoBehaviour, IDamageable
         attackCoroutine = false;
     }
 
+    /*
     void Flip()
     {  
         flipInterval += Time.deltaTime;
@@ -329,6 +359,31 @@ public class Enemy : MonoBehaviour, IDamageable
         if (!isAttacking)
         {
             animator.Play("Walk");
+        }
+    }
+    */
+
+    void Flip(Vector2 direction)
+    {
+        flipInterval += Time.deltaTime;
+
+        if(flipInterval >= 2)
+        {
+            if ((isFacingRight && direction.x < 0f || !isFacingRight && direction.x > 0f) && !isAttacking)
+            {
+                isFacingRight = !isFacingRight;
+                Vector2 localScale = transform.localScale;
+                localScale.x *= -1f;
+                transform.localScale = localScale;
+
+
+                if (childToIgnoreFlip != null)
+                {
+                    Vector2 childScale = childToIgnoreFlip.localScale;
+                    childScale.x *= -1f;
+                    childToIgnoreFlip.localScale = childScale;
+                }
+            }
         }
     }
 }
