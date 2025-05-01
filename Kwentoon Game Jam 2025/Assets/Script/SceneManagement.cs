@@ -16,8 +16,15 @@ public class SceneManagement : MonoBehaviour
         
     }
 
+
+    public void delaylaodScene()
+    {
+        Invoke("SceneLoad", 1f);
+    }
+
     public void SceneLoad()
     {
         SceneManager.LoadScene(SceneName);
     }
+
 }

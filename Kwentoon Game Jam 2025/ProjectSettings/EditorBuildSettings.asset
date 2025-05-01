@@ -15,6 +15,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Protype Gameplay.unity
     guid: 79c1d5ae17eae414e964defa47d14564
   - enabled: 0
-    path: Assets/Scenes/Protype_Gameplay.unity
+    path: Assets/Scenes/Protype_Gameplay 2.unity
     guid: ed61fb5690adc1c47ada59832d027d4d
   m_configObjects: {}
