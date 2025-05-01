@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: 3a181947d1cf138439618c3cdd1855af
+guid: 103742c3bd2aa1b4ea1ce0e646481bf1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3972162561038133482
-    second: ATTACK TANK TYPE GOBLIN_0
+      213: -8688634450296536818
+    second: ATTACK TANK GOBLIN_0
   - first:
-      213: -6332490886322879955
-    second: ATTACK TANK TYPE GOBLIN_1
+      213: 5200740804315896856
+    second: ATTACK TANK GOBLIN_1
   - first:
-      213: -4049323675069806419
-    second: ATTACK TANK TYPE GOBLIN_2
+      213: -605431523733008825
+    second: ATTACK TANK GOBLIN_2
   - first:
-      213: 4567110697020344902
-    second: ATTACK TANK TYPE GOBLIN_3
+      213: -1145146861256685113
+    second: ATTACK TANK GOBLIN_3
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -128,13 +128,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ATTACK TANK TYPE GOBLIN_0
+      name: ATTACK TANK GOBLIN_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 120
-        height: 100
+        height: 105
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -142,20 +142,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ae8a8c8cdc4ff1730800000000000000
-      internalID: 3972162561038133482
+      spriteID: e018ad67005cb6780800000000000000
+      internalID: -8688634450296536818
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ATTACK TANK TYPE GOBLIN_1
+      name: ATTACK TANK GOBLIN_1
       rect:
         serializedVersion: 2
         x: 120
         y: 0
         width: 120
-        height: 100
+        height: 105
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,20 +163,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d22835107197e18a0800000000000000
-      internalID: -6332490886322879955
+      spriteID: 81cd022f43ebc2840800000000000000
+      internalID: 5200740804315896856
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ATTACK TANK TYPE GOBLIN_2
+      name: ATTACK TANK GOBLIN_2
       rect:
         serializedVersion: 2
         x: 240
         y: 0
         width: 120
-        height: 100
+        height: 105
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,20 +184,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da882ee5299edc7c0800000000000000
-      internalID: -4049323675069806419
+      spriteID: 74e0214ac331997f0800000000000000
+      internalID: -605431523733008825
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ATTACK TANK TYPE GOBLIN_3
+      name: ATTACK TANK GOBLIN_3
       rect:
         serializedVersion: 2
         x: 360
         y: 0
         width: 120
-        height: 100
+        height: 105
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -205,8 +205,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 64ac8c93bf2a16f30800000000000000
-      internalID: 4567110697020344902
+      spriteID: 7c944273ffe9b10f0800000000000000
+      internalID: -1145146861256685113
       vertices: []
       indices: 
       edges: []
