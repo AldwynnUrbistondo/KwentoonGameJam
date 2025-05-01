@@ -288,11 +288,11 @@ MonoBehaviour:
   maxCritRateLevel: 5
   maxCritDamageLevel: 5
   damageValue:
-  - 7
   - 10
   - 15
   - 20
   - 30
+  - 50
   fireRateValue:
   - 0.45
   - 0.4
@@ -3945,9 +3945,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dd01fd1c401ecf42a95a6076e66d9dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basicEnemyPrefab: {fileID: 4372748749562429236, guid: 1773133b393da6b4d86a56556fce3161, type: 3}
-  tankEnemyPrefab: {fileID: 1166634677307539706, guid: 3750063f157e9044a871bca45f30b4bd, type: 3}
-  speedyEnemyPrefab: {fileID: 9165408218703846450, guid: d81cac6be461f50478411b485a908943, type: 3}
+  basicEnemyPrefab: {fileID: 4426464647975865578, guid: 67dfb9fd5942df74ca8bbcbc0dd6b8a8, type: 3}
+  tankEnemyPrefab: {fileID: 6391043340344026973, guid: 68a21ad0201ff374b950ad3063df8c29, type: 3}
+  speedyEnemyPrefab: {fileID: 4611850833343827242, guid: e3605e7c987f9744ea8a462af0409fdf, type: 3}
   spawnArea: {fileID: 941565829}
   spawnLocations:
   - {fileID: 232644148}
@@ -4015,7 +4015,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.001
+  m_Mass: 0.0001
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -5940,6 +5940,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1870424986}
     m_Modifications:
+    - target: {fileID: 7834142096698799817, guid: 315a52ba3281cbb42bfdd7ca8bcaa688, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7834142096956406908, guid: 315a52ba3281cbb42bfdd7ca8bcaa688, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -5987,6 +5991,10 @@ PrefabInstance:
     - target: {fileID: 7834142096956406909, guid: 315a52ba3281cbb42bfdd7ca8bcaa688, type: 3}
       propertyPath: m_Name
       value: 'Tower '
+      objectReference: {fileID: 0}
+    - target: {fileID: 7834142097253810606, guid: 315a52ba3281cbb42bfdd7ca8bcaa688, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 315a52ba3281cbb42bfdd7ca8bcaa688, type: 3}

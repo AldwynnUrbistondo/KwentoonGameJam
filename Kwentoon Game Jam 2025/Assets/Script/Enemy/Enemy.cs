@@ -55,15 +55,25 @@ public class Enemy : MonoBehaviour, IDamageable
     public bool isCollision = false;
     public bool canMove = true;
     public bool isAttacking = false;
+    bool isFacingRight = true;
+    bool attackCoroutine = false;
+
+    [Header("Animation Clips")]
+    public AnimationClip attackClip;
 
     Transform basePos;
     Rigidbody2D rb;
+    Animator animator;
+    public Transform childToIgnoreFlip;
 
+    float flipInterval = 0;
 
     void Start()
     {
+        
         _sprite = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         basePos = GameObject.FindWithTag("Base").transform;
     }
 
@@ -72,6 +82,12 @@ public class Enemy : MonoBehaviour, IDamageable
         GoToBasePosition();
         CheckHealth();
         AttackBase();
+        Flip();
+
+        if (IsFrozen)
+        {
+            animator.speed = 0.5f;
+        }
     }
 
     void GoToBasePosition()
@@ -128,7 +144,7 @@ public class Enemy : MonoBehaviour, IDamageable
         Color colorA;
         if (IsFrozen)
         {
-            colorA = new Color(0.68f, 0.85f, 0.9f); // LightBlue (RGB: 173, 216, 230)
+            colorA = Color.blue; // new Color(0.68f, 0.85f, 0.9f); // LightBlue (RGB: 173, 216, 230)
         }
         else
         {
@@ -209,7 +225,11 @@ public class Enemy : MonoBehaviour, IDamageable
 
         while (elapsed < duration)
         {
-            canvasTransform.position = Vector3.Lerp(startPos, endPos, elapsed / duration);
+            if (canvasTransform != null)
+            {
+                canvasTransform.position = Vector3.Lerp(startPos, endPos, elapsed / duration);
+            }
+            
             elapsed += Time.deltaTime;
             yield return null;
         }
@@ -248,11 +268,67 @@ public class Enemy : MonoBehaviour, IDamageable
         if (isAttacking)
         {
             attackInterval += Time.deltaTime;
-            if (attackInterval >= attackSpeed)
+            if (attackInterval >= attackSpeed && !attackCoroutine)
             {
-                ally.TakeDamage(null, attackDamage);
-                attackInterval = 0;
+                
+                StartCoroutine(StartAttack());
+                
             }
+        }
+    }
+
+    IEnumerator StartAttack()
+    {
+        attackCoroutine = true;
+        animator.Play("Attack");
+        if (IsFrozen)
+        {
+            yield return new WaitForSeconds(attackClip.length + (attackClip.length * 0.5f));
+        }
+        else
+        {
+            yield return new WaitForSeconds(attackClip.length);
+        }
+
+        if (ally != null)
+        {
+            ally.TakeDamage(null, attackDamage);
+            animator.Play("Idle");
+        }
+        
+        
+        attackInterval = 0;
+        attackCoroutine = false;
+    }
+
+    void Flip()
+    {  
+        flipInterval += Time.deltaTime;
+        if (flipInterval >= 2)
+        {
+            if ((isFacingRight && rb.velocity.x < 0f || !isFacingRight && rb.velocity.x > 0f) && !isAttacking)
+            {
+                isFacingRight = !isFacingRight;
+                Vector2 localScale = transform.localScale;
+                localScale.x *= -1f;
+                transform.localScale = localScale;
+
+
+                if (childToIgnoreFlip != null)
+                {
+                    Vector2 childScale = childToIgnoreFlip.localScale;
+                    childScale.x *= -1f;
+                    childToIgnoreFlip.localScale = childScale;
+                }
+
+                flipInterval = 0;
+            }
+        }
+        
+
+        if (!isAttacking)
+        {
+            animator.Play("Walk");
         }
     }
 }

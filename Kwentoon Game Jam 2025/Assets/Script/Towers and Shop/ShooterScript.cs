@@ -35,7 +35,7 @@ public class ShooterScript : MonoBehaviour
         CleanEnemyList();
 
         fireInterval += Time.deltaTime;
-        if (fireInterval >= fireRate)
+        if (fireInterval >= fireRate && !GameManager.isPause)
         {
             ShootEnemy(damage);
             fireInterval = 0;
