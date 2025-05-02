@@ -151,8 +151,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -975038297
+  m_SortingLayer: 34
   m_SortingOrder: 0
   m_Sprite: {fileID: -5463330440424561487, guid: 914baf9be59978a408ebdc8ef15329d4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -212,6 +212,7 @@ MonoBehaviour:
   isAttacking: 0
   attackClip: {fileID: 7400000, guid: b86dffa6149773e478b1e06d8c8c21d4, type: 2}
   childToIgnoreFlip: {fileID: 8051571592672019989}
+  currentSpeed: 0
 --- !u!58 &4426464647975865591
 CircleCollider2D:
   m_ObjectHideFlags: 0
