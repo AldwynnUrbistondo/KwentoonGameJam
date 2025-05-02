@@ -44,17 +44,16 @@ public class Base : MonoBehaviour, IAlly
 
     public void TakeDamage(Transform bullet, float damage)
     {
-        HP -= damage;
-
-        AudioManager audioManager = FindObjectOfType<AudioManager>();
-        audioManager.PlaySound(SoundType.BaseHit);
-
+        
         if (!IsDying)
         {
+            HP -= damage;
+            AudioManager audioManager = FindObjectOfType<AudioManager>();
+            audioManager.PlaySound(SoundType.BaseHit);
             DamageText(damage);
         }
         
-        if (HP <= 0)
+        if (HP <= 0 && !IsDying)
         {
             Die();
         }
