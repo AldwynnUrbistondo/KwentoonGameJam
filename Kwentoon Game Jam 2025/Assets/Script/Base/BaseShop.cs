@@ -8,6 +8,7 @@ public class BaseShop : MonoBehaviour
 {
     public TextMeshProUGUI popUpText;
     GameManager gameManager;
+    AudioManager audioManager;
 
     public Canvas shopPanel;
     bool isPlayerNear = false;
@@ -65,6 +66,7 @@ public class BaseShop : MonoBehaviour
     void SetUI()
     {
         gameManager = FindObjectOfType<GameManager>();
+        audioManager = FindObjectOfType<AudioManager>();
 
         closeShopButton.onClick.AddListener(() => CloseUpgradeShop());
 
@@ -103,6 +105,8 @@ public class BaseShop : MonoBehaviour
 
     void CloseUpgradeShop()
     {
+        audioManager.PlaySound(SoundType.ButtonClick);
+
         GameManager.isPause = false;
         Time.timeScale = 1f;
 
@@ -202,6 +206,7 @@ public class BaseShop : MonoBehaviour
 
     void UpgradeDamage()
     {
+        audioManager.PlaySound(SoundType.ButtonBuy);
         gameManager.coins -= damagePrice[currentDamageLevel];
 
         PlayerAttack playerStats = FindObjectOfType<PlayerAttack>();
@@ -214,6 +219,7 @@ public class BaseShop : MonoBehaviour
 
     void UpgradeFireRate()
     {
+        audioManager.PlaySound(SoundType.ButtonBuy);
         gameManager.coins -= fireRatePrice[currentFireRateLevel];
 
         PlayerAttack playerStats = FindObjectOfType<PlayerAttack>();
@@ -226,6 +232,7 @@ public class BaseShop : MonoBehaviour
 
     void UpgradeCritRate()
     {
+        audioManager.PlaySound(SoundType.ButtonBuy);
         gameManager.coins -= critRatePrice[currentCritRateLevel];
 
         PlayerAttack playerStats = FindObjectOfType<PlayerAttack>();
@@ -238,6 +245,7 @@ public class BaseShop : MonoBehaviour
 
     void UpgradeCritDamage()
     {
+        audioManager.PlaySound(SoundType.ButtonBuy);
         gameManager.coins -= critDamagePrice[currentCritDamageLevel];
 
         PlayerAttack playerStats = FindObjectOfType<PlayerAttack>();

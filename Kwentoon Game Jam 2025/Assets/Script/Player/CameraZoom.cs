@@ -8,11 +8,11 @@ public class CameraZoom : MonoBehaviour
     public float minZoom = 2f;
     public float maxZoom = 10f;
 
-    private Camera cam;
+    private Cinemachine.CinemachineVirtualCamera vcam;
 
     void Start()
     {
-        cam = Camera.main;
+        vcam = FindObjectOfType<Cinemachine.CinemachineVirtualCamera>();
     }
 
     void Update()
@@ -20,8 +20,8 @@ public class CameraZoom : MonoBehaviour
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         if (scroll != 0f)
         {
-            cam.orthographicSize -= scroll * zoomSpeed;
-            cam.orthographicSize = Mathf.Clamp(cam.orthographicSize, minZoom, maxZoom);
+            float newSize = vcam.m_Lens.OrthographicSize - scroll * zoomSpeed;
+            vcam.m_Lens.OrthographicSize = Mathf.Clamp(newSize, minZoom, maxZoom);
         }
     }
 }

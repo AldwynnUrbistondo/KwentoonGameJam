@@ -88,6 +88,9 @@ public class AudioManager : MonoBehaviour
                 return;
             }
         }
+
+        audioSources[0].Play();
+
     }
 }
 

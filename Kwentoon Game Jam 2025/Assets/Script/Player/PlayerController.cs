@@ -16,10 +16,16 @@ public class PlayerController : MonoBehaviour
     float dashTimer = 0;
 
     public Transform mouseTransform;
+    Animator animator;
+    bool isFacingRight = true;
+
+    float xInput;
+    float yInput;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     public void Update()
@@ -41,8 +47,8 @@ public class PlayerController : MonoBehaviour
 
     void PlayerMovement()
     {
-        float xInput = Input.GetAxisRaw("Horizontal");
-        float yInput = Input.GetAxisRaw("Vertical");
+        xInput = Input.GetAxisRaw("Horizontal");
+        yInput = Input.GetAxisRaw("Vertical");
 
         moveInput = new Vector2(xInput, yInput).normalized;
 
@@ -60,6 +66,21 @@ public class PlayerController : MonoBehaviour
                 dashTimer = 0f;
             }
         }
+
+        if (xInput != 0)
+        {
+            animator.Play("Walk Horizontal");
+        }
+        else if (yInput != 0)
+        {
+            animator.Play("Walk Vertical");
+        }
+        else
+        {
+            animator.Play("Idle");
+        }
+
+        Flip();
     }
 
     IEnumerator Dash()
@@ -71,4 +92,14 @@ public class PlayerController : MonoBehaviour
         isDashing = false;
     }
 
+    void Flip()
+    {           //Flip to Left                      //Flip to Right
+        if (isFacingRight && xInput < 0f || !isFacingRight && xInput > 0f)
+        {
+            isFacingRight = !isFacingRight;
+            Vector2 localScale = transform.localScale;
+            localScale.x *= -1f;
+            transform.localScale = localScale;
+        }
+    }
 }

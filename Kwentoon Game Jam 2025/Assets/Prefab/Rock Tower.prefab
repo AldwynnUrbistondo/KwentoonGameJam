@@ -144,7 +144,7 @@ MonoBehaviour:
   enemyInRange: []
   nearestEnemy: {fileID: 0}
   nearestEnemyDistance: 0
-  projectilePrefab: {fileID: 4375402184572443120, guid: 387920916b6e2674db424d822dbb21ac, type: 3}
+  projectilePrefab: {fileID: 6977856064398699374, guid: 3882a82fb35bc024f90cd44f6df10d11, type: 3}
   firePoint: {fileID: 5482287431537302042}
   rb: {fileID: 0}
   fireRate: 0.3

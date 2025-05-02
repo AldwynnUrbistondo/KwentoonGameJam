@@ -132,6 +132,7 @@ public class ShopTower : MonoBehaviour
 
     void CloseTowerShop()
     {
+        audioManager.PlaySound(SoundType.ButtonClick);
         GameManager.isPause = false;
         Time.timeScale = 1f;
 
@@ -178,6 +179,7 @@ public class ShopTower : MonoBehaviour
     void BuyFreezeTower()
     {
         audioManager.PlaySound(SoundType.TowerPlace);
+        audioManager.PlaySound(SoundType.ButtonBuy);
 
         GameObject emptyTower = null;
         foreach (Transform child in transform)
@@ -203,6 +205,7 @@ public class ShopTower : MonoBehaviour
     void BuyRockTower()
     {
         audioManager.PlaySound(SoundType.TowerPlace);
+        audioManager.PlaySound(SoundType.ButtonBuy);
 
         GameObject emptyTower = null;
         foreach (Transform child in transform)
@@ -228,6 +231,7 @@ public class ShopTower : MonoBehaviour
     void BuyPoisonTower()
     {
         audioManager.PlaySound(SoundType.TowerPlace);
+        audioManager.PlaySound(SoundType.ButtonBuy);
 
         GameObject emptyTower = null;
         foreach (Transform child in transform)
@@ -255,6 +259,7 @@ public class ShopTower : MonoBehaviour
 
     void UpgradeTower()
     {
+        audioManager.PlaySound(SoundType.ButtonBuy);
 
         if (currentTower == 1)
         {
@@ -302,6 +307,7 @@ public class ShopTower : MonoBehaviour
 
     void CloseTowerUpgrade()
     {
+        audioManager.PlaySound(SoundType.ButtonClick);
         GameManager.isPause = false;
         Time.timeScale = 1f;
 
@@ -407,6 +413,7 @@ public class ShopTower : MonoBehaviour
     void SellTower()
     {
         levelIndicator.gameObject.SetActive(false);
+        audioManager.PlaySound(SoundType.ButtonBuy);
 
         if (currentTower == 1)
         {

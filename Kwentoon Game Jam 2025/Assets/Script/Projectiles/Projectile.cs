@@ -18,6 +18,11 @@ public class Projectile : MonoBehaviour
     {
         Vector2 direction = (target.position - transform.position).normalized;
         rb.velocity = direction * 25;
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        // Apply rotation
+        transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
     public virtual void OnTriggerEnter2D(Collider2D actor)
