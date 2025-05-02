@@ -70,7 +70,7 @@ MonoBehaviour:
   upgradePanel: {fileID: 7834142096698799821}
   currentLevel: 0
   currentTower: 0
-  emptyTowerPrefab: {fileID: 8821121875538244064, guid: 69459ca56a570a149a44561dcdd19210, type: 3}
+  emptyTowerPrefab: {fileID: 2768319185717160471, guid: 18ae72365eacadb4e9c0a4da62e8c7db, type: 3}
   towerImage: {fileID: 7834142095909401382}
   closeShopButton: {fileID: 7834142095647888202}
   buyFreezeTowerButton: {fileID: 7834142096823588336}
