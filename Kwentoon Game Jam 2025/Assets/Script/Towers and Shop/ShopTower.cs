@@ -11,6 +11,7 @@ public class ShopTower : MonoBehaviour
 
     public TextMeshProUGUI popUpText;
     GameManager gameManager;
+    AudioManager audioManager;
     Vector2 thisPosition;
     Vector3 towerPos;
 
@@ -97,6 +98,7 @@ public class ShopTower : MonoBehaviour
     void SetUI()
     {
         gameManager = FindObjectOfType<GameManager>();
+        audioManager = FindObjectOfType<AudioManager>();
         thisPosition = transform.position;
         towerPos = new Vector3(thisPosition.x, thisPosition.y, -1f);
 
@@ -175,6 +177,8 @@ public class ShopTower : MonoBehaviour
 
     void BuyFreezeTower()
     {
+        audioManager.PlaySound(SoundType.TowerPlace);
+
         GameObject emptyTower = null;
         foreach (Transform child in transform)
         {
@@ -198,6 +202,8 @@ public class ShopTower : MonoBehaviour
 
     void BuyRockTower()
     {
+        audioManager.PlaySound(SoundType.TowerPlace);
+
         GameObject emptyTower = null;
         foreach (Transform child in transform)
         {
@@ -221,6 +227,8 @@ public class ShopTower : MonoBehaviour
 
     void BuyPoisonTower()
     {
+        audioManager.PlaySound(SoundType.TowerPlace);
+
         GameObject emptyTower = null;
         foreach (Transform child in transform)
         {
@@ -425,6 +433,8 @@ public class ShopTower : MonoBehaviour
             }
         }
         Destroy(tower);
+
+        audioManager.PlaySound(SoundType.TowerDestroy);
 
         currentLevel = 0;
         currentTower = 0;

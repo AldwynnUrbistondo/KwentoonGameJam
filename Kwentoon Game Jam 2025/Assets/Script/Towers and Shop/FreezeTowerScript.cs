@@ -27,6 +27,9 @@ public class FreezeTowerScript : TowerScript
             prjScript.damage = finalDamage;
             prjScript.slow = slowBonus;
             prjScript.Shoot();
+
+            AudioManager audioManager = FindObjectOfType<AudioManager>();
+            audioManager.PlaySound(SoundType.FreezeProjectile);
         }
 
     }

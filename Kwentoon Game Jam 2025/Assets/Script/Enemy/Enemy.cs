@@ -87,7 +87,7 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         
         GoToBasePosition();
-        CheckHealth();
+        //CheckHealth();
         AttackBase();
         //Flip();
 
@@ -111,30 +111,41 @@ public class Enemy : MonoBehaviour, IDamageable
 
     void GoToBasePosition()
     {
-        if (!isHit && !isCollision && canMove)
+        if (!isHit && !isCollision && canMove && rb.bodyType != RigidbodyType2D.Static)
         {
             Vector2 direction = (basePos.position - transform.position).normalized;
             rb.velocity = direction * Speed;
             Flip(direction);
         }
 
-        if (!isAttacking && currentSpeed > 2)
+        if (!IsFrozen)
         {
-            animator.Play("Walk");
+            if (!isAttacking && currentSpeed > 2)
+            {
+                animator.Play("Walk");
+            }
+            else if (!isAttacking && currentSpeed < 2)
+            {
+                animator.Play("Idle");
+            }
         }
-        else if (!isAttacking && currentSpeed < 2)
-        {
-            animator.Play("Idle");
-        }
+        
     }
 
     public void TakeDamage(Transform bullet, float damage)
     {
         HP -= damage;
         DamageText(damage);
+        AudioManager audioManager = FindObjectOfType<AudioManager>();
+        audioManager.PlaySound(SoundType.EnemyHit);
+
         if (HP <= 0)
         {
-            Die();
+            if (!IsDying)
+            {
+                Die();
+            }
+            
         }
         else
         {
@@ -160,9 +171,27 @@ public class Enemy : MonoBehaviour, IDamageable
     public void Die()
     {
         IsDying = true;
+
+        StartCoroutine(StartDie());
+    }
+
+    public IEnumerator StartDie()
+    {
         GameManager gameManager = FindObjectOfType<GameManager>();
-        //gameManager.coins += coinsDrop;
         gameManager.AddCoins(coinsDrop);
+
+        Collider2D[] colliders = GetComponents<Collider2D>();
+        foreach (Collider2D col in colliders)
+        {
+            col.enabled = false;
+        }
+
+        rb.bodyType = RigidbodyType2D.Static;
+
+        AudioManager audioManager = FindObjectOfType<AudioManager>();
+        audioManager.PlaySound(SoundType.EnemyDeath);
+
+        yield return new WaitForSeconds(attackClip.length);
         Destroy(gameObject);
     }
 
@@ -220,7 +249,11 @@ public class Enemy : MonoBehaviour, IDamageable
             isCollision = true;
 
             Vector2 bounceDirection = (transform.position - collision.transform.position).normalized;
-            rb.velocity = bounceDirection * Speed;
+            if(rb.bodyType != RigidbodyType2D.Static)
+            {
+                rb.velocity = bounceDirection * Speed;
+            }
+            
         }
     }
 
@@ -275,7 +308,11 @@ public class Enemy : MonoBehaviour, IDamageable
         {
             canMove = false;
             isAttacking = true;
-            rb.velocity = Vector2.zero;
+            if (rb.bodyType != RigidbodyType2D.Static)
+            {
+                rb.velocity = Vector2.zero;
+            }
+           
             ally = allyExit;
         }
     }
@@ -294,7 +331,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     void AttackBase()
     {
-        if (isAttacking)
+        if (isAttacking && !IsDying)
         {
             attackInterval += Time.deltaTime;
             if (attackInterval >= attackSpeed && !attackCoroutine)
@@ -319,7 +356,7 @@ public class Enemy : MonoBehaviour, IDamageable
             yield return new WaitForSeconds(attackClip.length);
         }
 
-        if (ally != null)
+        if (ally != null && !IsDying)
         {
             ally.TakeDamage(null, attackDamage);
             animator.Play("Idle");

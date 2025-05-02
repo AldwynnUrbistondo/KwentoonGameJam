@@ -88,6 +88,9 @@ public class ShooterScript : MonoBehaviour
             prjScript.target = nearestEnemy;
             prjScript.damage = finalDamage;
             prjScript.Shoot();
+
+            AudioManager audioManager = FindObjectOfType<AudioManager>();
+            audioManager.PlaySound(SoundType.RockProjectile);
         }
 
     }
@@ -116,13 +119,27 @@ public class ShooterScript : MonoBehaviour
         }
     }
 
+    public virtual void OnTriggerStay2D(Collider2D actor)
+    {
+        Enemy enemy = actor.GetComponent<Enemy>();
+
+        if (enemy != null)
+        {
+            enemyInRange.Add(enemy);
+        }
+    }
+
     public virtual void OnTriggerExit2D(Collider2D actor)
     {
         Enemy enemy = actor.GetComponent<Enemy>();
 
         if (enemy != null)
         {
-            enemyInRange.Remove(enemy);
+            if (enemy.IsDying)
+            {
+                enemyInRange.Remove(enemy);
+            }
+            
         }
     }
 

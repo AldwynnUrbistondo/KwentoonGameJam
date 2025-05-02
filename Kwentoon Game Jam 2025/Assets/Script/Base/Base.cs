@@ -45,6 +45,10 @@ public class Base : MonoBehaviour, IAlly
     public void TakeDamage(Transform bullet, float damage)
     {
         HP -= damage;
+
+        AudioManager audioManager = FindObjectOfType<AudioManager>();
+        audioManager.PlaySound(SoundType.BaseHit);
+
         if (!IsDying)
         {
             DamageText(damage);
@@ -60,6 +64,9 @@ public class Base : MonoBehaviour, IAlly
     {
         IsDying = true;
         GameManager.hasLose = true;
+
+        AudioManager audioManager = FindObjectOfType<AudioManager>();
+        audioManager.PlaySound(SoundType.TowerDestroy);
     }
 
     void RegenHP()

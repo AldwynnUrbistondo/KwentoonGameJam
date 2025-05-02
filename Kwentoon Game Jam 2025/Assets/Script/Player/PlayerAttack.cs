@@ -36,6 +36,9 @@ public class PlayerAttack : ShooterScript
             prjScript.target = mouseTransform;
             prjScript.damage = finalDamage;
             prjScript.Shoot();
+
+        AudioManager audioManager = FindObjectOfType<AudioManager>();
+        audioManager.PlaySound(SoundType.PlayerProjectile);
         //}
 
     }

@@ -45,6 +45,10 @@ public class PoisonTower : ShooterScript
     {
     }
 
+    public override void OnTriggerStay2D(Collider2D collision)
+    {
+
+    }
     /*
     public override void OnTriggerEnter2D(Collider2D actor)
     {

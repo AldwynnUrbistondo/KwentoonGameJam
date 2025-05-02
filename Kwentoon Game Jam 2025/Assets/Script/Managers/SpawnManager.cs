@@ -17,6 +17,7 @@ public class SpawnManager : MonoBehaviour
 
     public int numOfBasicEnemies;
     public int numOfTankEnemies;
+    public int numOfWaveTankEnemies = 0;
     public int numOfSpeedyEnemies;
 
 
@@ -104,6 +105,8 @@ public class SpawnManager : MonoBehaviour
         {
             numOfTankEnemies += addTankEnemies;
             canAddTankEnemies = true;
+
+            hpMultiplier += 0.25f;
         }
 
         if (GameManager.wave > 5)
@@ -114,13 +117,6 @@ public class SpawnManager : MonoBehaviour
         if (GameManager.wave >= 25)
         {
             hpMultiplier += 0.25f;
-        }
-        if (GameManager.wave >= 10)
-        {
-            if (GameManager.wave % 5 == 0)
-            {
-                hpMultiplier += 0.25f;
-            }
         }
         
     }
