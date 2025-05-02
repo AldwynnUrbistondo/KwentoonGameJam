@@ -4690,7 +4690,7 @@ MonoBehaviour:
   coinsText: {fileID: 295815989}
   waveText: {fileID: 1017743179}
   lerpCoins: 0
-  coins: 999999
+  coins: 150
   lerpDuration: 2
 --- !u!4 &902033666
 Transform:
@@ -10042,6 +10042,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3645706689348079580, guid: d3991b7a5b81ec54daf5994a39799681, type: 3}
+      propertyPath: m_LookAt
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3645706691139387878, guid: d3991b7a5b81ec54daf5994a39799681, type: 3}
       propertyPath: m_RootOrder
       value: 0
