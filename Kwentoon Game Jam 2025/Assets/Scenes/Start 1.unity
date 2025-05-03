@@ -400,7 +400,7 @@ MonoBehaviour:
 
     Aldwynn Urbistondo
 
-    Prinze Raiden N. Frias
+    Prinze Raiden Frias
 
 
     Artists:
@@ -410,7 +410,7 @@ MonoBehaviour:
 
     Ivan Nieves
 
-    William Shaun Azul'
+    William Lei Shaun Azul'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: eb3f3c815d82d9242a39053972baba1b, type: 2}
   m_sharedMaterial: {fileID: 842239323945806364, guid: eb3f3c815d82d9242a39053972baba1b, type: 2}
@@ -834,7 +834,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -281, y: -60}
+  m_AnchoredPosition: {x: -267, y: 62}
   m_SizeDelta: {x: 69, y: 13}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &481806445
@@ -1345,7 +1345,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -308, y: 0}
+  m_AnchoredPosition: {x: -294, y: 100}
   m_SizeDelta: {x: 40, y: 13}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &714021507
@@ -1466,7 +1466,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f70e182e4e29234cbe891c12b0e3c9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneName: Gameplay
+  SceneName: Gameplay 1
 --- !u!95 &714021511
 Animator:
   serializedVersion: 3
