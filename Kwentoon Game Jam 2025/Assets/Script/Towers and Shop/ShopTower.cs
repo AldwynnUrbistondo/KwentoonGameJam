@@ -59,6 +59,15 @@ public class ShopTower : MonoBehaviour
 
     #endregion
 
+    private void Awake()
+    {
+        shopPanel.worldCamera = Camera.main;
+        shopPanel.sortingLayerName = "UI Shop";
+
+        upgradePanel.worldCamera = Camera.main;
+        upgradePanel.sortingLayerName = "UI Shop";
+    }
+
     private void Start()
     {
         SetUI();
@@ -66,11 +75,11 @@ public class ShopTower : MonoBehaviour
 
     private void Update()
     {
-        if (isPlayerNear && Input.GetKeyDown(KeyCode.E) && isTowerEmpty && !GameManager.hasLose)
+        if (isPlayerNear && Input.GetKeyDown(KeyCode.E) && isTowerEmpty && !GameManager.hasLose && GameManager.isTutorialFinished)
         {
             OpenTowerShop();
         }
-        else if (isPlayerNear && Input.GetKeyDown(KeyCode.E) && !isTowerEmpty && !GameManager.hasLose)
+        else if (isPlayerNear && Input.GetKeyDown(KeyCode.E) && !isTowerEmpty && !GameManager.hasLose && GameManager.isTutorialFinished)
         {
             OpenTowerUpgrade();
         }
@@ -80,7 +89,7 @@ public class ShopTower : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && !GameManager.hasLose && GameManager.isTutorialFinished)
         {
             isPlayerNear = true;
             popUpText.gameObject.SetActive(true);
@@ -119,6 +128,8 @@ public class ShopTower : MonoBehaviour
         upgradeTowerButton.onClick.AddListener(() => UpgradeTower());
 
         levelIndicator.gameObject.SetActive(false);
+
+        
     }
 
     #region Buy Towers

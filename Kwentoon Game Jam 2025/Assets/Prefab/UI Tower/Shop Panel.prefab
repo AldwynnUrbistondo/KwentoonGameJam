@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2208615221204709939}
   - component: {fileID: 2208615221204709938}
   - component: {fileID: 2208615221204709937}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Buy Freeze Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 2208615221361682035}
   - component: {fileID: 2208615221361682034}
   - component: {fileID: 2208615221361682033}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Shop Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,7 +172,7 @@ Canvas:
   m_GameObject: {fileID: 2208615221361682031}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -235,7 +235,7 @@ GameObject:
   - component: {fileID: 2208615221506986544}
   - component: {fileID: 2208615221506986546}
   - component: {fileID: 2208615221506986545}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -369,7 +369,7 @@ GameObject:
   - component: {fileID: 2208615221585746897}
   - component: {fileID: 2208615221585746899}
   - component: {fileID: 2208615221585746898}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CoinIMG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -444,7 +444,7 @@ GameObject:
   - component: {fileID: 2208615221669843014}
   - component: {fileID: 2208615221669843016}
   - component: {fileID: 2208615221669843015}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Image (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -519,7 +519,7 @@ GameObject:
   - component: {fileID: 2208615221810704147}
   - component: {fileID: 2208615221810704149}
   - component: {fileID: 2208615221810704148}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -653,7 +653,7 @@ GameObject:
   - component: {fileID: 2208615222189802395}
   - component: {fileID: 2208615222189802397}
   - component: {fileID: 2208615222189802396}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CoinIMG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -728,7 +728,7 @@ GameObject:
   - component: {fileID: 2208615222273451912}
   - component: {fileID: 2208615222273451914}
   - component: {fileID: 2208615222273451913}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CoinIMG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -803,7 +803,7 @@ GameObject:
   - component: {fileID: 2208615222438597636}
   - component: {fileID: 2208615222438597638}
   - component: {fileID: 2208615222438597637}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -937,7 +937,7 @@ GameObject:
   - component: {fileID: 2208615222470424652}
   - component: {fileID: 2208615222470424654}
   - component: {fileID: 2208615222470424653}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1020,7 +1020,7 @@ GameObject:
   - component: {fileID: 2208615222509686240}
   - component: {fileID: 2208615222509686239}
   - component: {fileID: 2208615222509686238}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Buy Rock Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1141,7 +1141,7 @@ GameObject:
   - component: {fileID: 2208615222515767147}
   - component: {fileID: 2208615222515767149}
   - component: {fileID: 2208615222515767148}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1276,7 +1276,7 @@ GameObject:
   - component: {fileID: 2208615222742134493}
   - component: {fileID: 2208615222742134492}
   - component: {fileID: 2208615222742134491}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Buy Poison Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1397,7 +1397,7 @@ GameObject:
   - component: {fileID: 2208615222807202496}
   - component: {fileID: 2208615222807202498}
   - component: {fileID: 2208615222807202497}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Image (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1472,7 +1472,7 @@ GameObject:
   - component: {fileID: 2208615222853839989}
   - component: {fileID: 2208615222853839991}
   - component: {fileID: 2208615222853839990}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Black Out
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1548,7 +1548,7 @@ GameObject:
   - component: {fileID: 2208615222983341197}
   - component: {fileID: 2208615222983341196}
   - component: {fileID: 2208615222983341195}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Close Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1680,7 +1680,7 @@ GameObject:
   - component: {fileID: 2208615223121400998}
   - component: {fileID: 2208615223121401000}
   - component: {fileID: 2208615223121400999}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1754,6 +1754,10 @@ PrefabInstance:
     - target: {fileID: 621040190859147276, guid: ea020c0c727223b4780e5d0f75f4d856, type: 3}
       propertyPath: m_Name
       value: Button Click
+      objectReference: {fileID: 0}
+    - target: {fileID: 621040190859147276, guid: ea020c0c727223b4780e5d0f75f4d856, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 621040190859147277, guid: ea020c0c727223b4780e5d0f75f4d856, type: 3}
       propertyPath: m_RootOrder

@@ -48,6 +48,7 @@ public class TutorialManager : MonoBehaviour
         {
             fireComplete = true;
             tutorialText.gameObject.SetActive(false);
+            GameManager.isTutorialFinished = true;
         }
     }
 }

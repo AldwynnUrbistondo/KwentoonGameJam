@@ -172,3 +172,6 @@ TagManager:
   - name: Canvas
     uniqueID: 1757672567
     locked: 0
+  - name: UI Shop
+    uniqueID: 797023231
+    locked: 0

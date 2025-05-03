@@ -50,6 +50,12 @@ public class BaseShop : MonoBehaviour
     public TextMeshProUGUI critRatePriceText;
     public TextMeshProUGUI critDamagePriceText;
 
+    private void Awake()
+    {
+        shopPanel.worldCamera = Camera.main;
+        shopPanel.sortingLayerName = "UI Shop";
+    }
+
     void Start()
     {
         SetUI();
@@ -57,7 +63,7 @@ public class BaseShop : MonoBehaviour
 
     private void Update()
     {
-        if (isPlayerNear && Input.GetKeyDown(KeyCode.E) && !GameManager.hasLose)
+        if (isPlayerNear && Input.GetKeyDown(KeyCode.E) && !GameManager.hasLose && GameManager.isTutorialFinished)
         {
             OpenUpgradeShop();
         }
@@ -78,7 +84,7 @@ public class BaseShop : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && !GameManager.hasLose && GameManager.isTutorialFinished)
         {
             isPlayerNear = true;
             popUpText.gameObject.SetActive(true);

@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
 
     public static bool isPause;
     public static bool hasLose;
-
+    public static bool isTutorialFinished = false; 
     public static float damageDealth;
 
     [Header("Coin Variables")]
@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     {
         isPause = false;
         hasLose = false;
+        
         wave = 0;
         damageDealth = 0;
     }
