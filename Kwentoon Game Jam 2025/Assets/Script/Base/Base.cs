@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Base : MonoBehaviour, IAlly
 {
@@ -78,6 +79,12 @@ public class Base : MonoBehaviour, IAlly
         PlayerPrefs.SetFloat("Damage Dealth", GameManager.damageDealth);
         PlayerPrefs.SetInt("Waves Survived", GameManager.wave - 1);
         PlayerPrefs.Save();
+    }
+
+    IEnumerator LoseScene()
+    {
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene("End");
     }
 
     void RegenHP()
