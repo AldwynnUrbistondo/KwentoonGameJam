@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
+    GameManager gameManager;
+
+    [Header("Enemy Prefabs")]
     public GameObject basicEnemyPrefab;
     public GameObject tankEnemyPrefab;
     public GameObject speedyEnemyPrefab;
@@ -13,25 +16,30 @@ public class SpawnManager : MonoBehaviour
     public Transform[] spawnLocations;
  
     [SerializeField] public List<GameObject> enemyPrefabs = new List<GameObject>();
+
     public float totalSpawnTime = 30f;
 
+    [Header("Enemy Count")]
     public int numOfBasicEnemies;
     public int numOfTankEnemies;
     public int numOfWaveTankEnemies = 0;
     public int numOfSpeedyEnemies;
 
-
+    [Header("Add Enemy")]
     public int addBasicEnemies;
     public int addTankEnemies;
+    public int addWaveTankEnemies;
     public int addSpeedyEnemies;
     
     public bool canAddTankEnemies = false;
 
     public float hpMultiplier = 0;
+    public float addCoins;
 
     private void Start()
     {
-        StartWave();
+        gameManager = FindObjectOfType<GameManager>();
+        //StartWave();
     }
 
     IEnumerator SpawnEnemies()
@@ -63,10 +71,11 @@ public class SpawnManager : MonoBehaviour
         
         yield return new WaitForSeconds(5);
 
+        gameManager.AddCoins(addCoins);
         StartWave();
     }
 
-    void StartWave()
+    public void StartWave()
     {
         for (int i = 0; i < numOfBasicEnemies; i++)
         {
@@ -87,7 +96,11 @@ public class SpawnManager : MonoBehaviour
                 enemyPrefabs.Add(speedyEnemyPrefab);
             }
         }
-        
+        for (int i = 0; i < numOfWaveTankEnemies; i++)
+        {
+            enemyPrefabs.Add(tankEnemyPrefab);
+        }
+
         Shuffle(enemyPrefabs);
         StartCoroutine(SpawnEnemies());
     }
@@ -95,28 +108,42 @@ public class SpawnManager : MonoBehaviour
     void CalculateNextWave()
     {
         canAddTankEnemies = false;
+        
 
         enemyPrefabs.Clear();
-        numOfBasicEnemies += addBasicEnemies;
+        numOfBasicEnemies = Mathf.Clamp(numOfBasicEnemies + addBasicEnemies, 0, 30);
 
         GameManager.wave++;
 
+        if (GameManager.wave >= 10)
+        {
+            if (GameManager.wave % 5 == 0)
+            {
+                numOfTankEnemies = Mathf.Clamp(numOfTankEnemies + addTankEnemies, 0, 10);
+                addTankEnemies++;
+
+                canAddTankEnemies = true;
+
+                hpMultiplier += 0.25f;
+                addCoins += 50;
+            }
+        }
+
         if (GameManager.wave % 5 == 0)
         {
-            numOfTankEnemies += addTankEnemies;
-            canAddTankEnemies = true;
-
             hpMultiplier += 0.25f;
+            addCoins += 50;
         }
 
-        if (GameManager.wave > 5)
+        if (GameManager.wave >= 5)
         {
-            numOfSpeedyEnemies += addSpeedyEnemies;
+            numOfSpeedyEnemies = Mathf.Clamp(numOfSpeedyEnemies + addSpeedyEnemies, 0, 20);
         }
 
-        if (GameManager.wave >= 25)
+        if (GameManager.wave >= 20)
         {
-            hpMultiplier += 0.25f;
+            addWaveTankEnemies = 1;
+            numOfWaveTankEnemies = Mathf.Clamp(numOfWaveTankEnemies + addWaveTankEnemies, 0, 10);
         }
         
     }

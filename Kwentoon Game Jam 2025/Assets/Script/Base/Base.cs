@@ -12,6 +12,7 @@ public class Base : MonoBehaviour, IAlly
     [SerializeField] private bool _isDying = false;
 
     public GameObject damageCanvas;
+    public GameObject smokePrefab;
 
     public float HP
     {
@@ -67,8 +68,16 @@ public class Base : MonoBehaviour, IAlly
         AudioManager audioManager = FindObjectOfType<AudioManager>();
         audioManager.PlaySound(SoundType.TowerDestroy);
 
+        Instantiate(smokePrefab, transform.position, Quaternion.identity);
+
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.color = Color.black;
+
+        Debug.Log("Damage Death: " + GameManager.damageDealth);
+        Debug.Log("Waves Survived: " + (GameManager.wave - 1));
+        PlayerPrefs.SetFloat("Damage Dealth", GameManager.damageDealth);
+        PlayerPrefs.SetInt("Waves Survived", GameManager.wave - 1);
+        PlayerPrefs.Save();
     }
 
     void RegenHP()

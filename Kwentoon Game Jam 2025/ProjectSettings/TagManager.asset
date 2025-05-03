@@ -148,6 +148,12 @@ TagManager:
   - name: Player
     uniqueID: 3319928999
     locked: 0
+  - name: Tower
+    uniqueID: 220078763
+    locked: 0
+  - name: Smoke
+    uniqueID: 1850091217
+    locked: 0
   - name: TX
     uniqueID: 508584205
     locked: 0

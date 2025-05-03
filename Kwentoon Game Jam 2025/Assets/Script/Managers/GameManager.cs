@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     public static bool isPause;
     public static bool hasLose;
 
+    public static float damageDealth;
+
     [Header("Coin Variables")]
     [HideInInspector] public float lerpCoins;
     public float coins;
@@ -22,7 +24,8 @@ public class GameManager : MonoBehaviour
     {
         isPause = false;
         hasLose = false;
-        wave = 1;
+        wave = 0;
+        damageDealth = 0;
     }
 
     // Update is called once per frame
@@ -41,7 +44,15 @@ public class GameManager : MonoBehaviour
     void UIUpdate()
     {
         //coinsText.text = coins.ToString("0");
-        waveText.text = "Wave: " + wave.ToString();
+        if (wave > 0)
+        {
+            waveText.text = "Wave: " + wave.ToString();
+        }
+        else
+        {
+            waveText.text = "Tutorial";
+        }
+       
     }
 
     void SpeedUpTime()

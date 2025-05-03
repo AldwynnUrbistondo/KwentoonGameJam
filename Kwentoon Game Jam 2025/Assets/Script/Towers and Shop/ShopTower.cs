@@ -25,6 +25,7 @@ public class ShopTower : MonoBehaviour
 
     [Header("Tower Prefabs")]
     public GameObject emptyTowerPrefab;
+    public GameObject smokePrefab;
     public Image towerImage;
 
     [Header("Buttons")]
@@ -179,7 +180,7 @@ public class ShopTower : MonoBehaviour
     void BuyFreezeTower()
     {
         audioManager.PlaySound(SoundType.TowerPlace);
-        audioManager.PlaySound(SoundType.ButtonBuy);
+        //audioManager.PlaySound(SoundType.ButtonBuy);
 
         GameObject emptyTower = null;
         foreach (Transform child in transform)
@@ -192,6 +193,7 @@ public class ShopTower : MonoBehaviour
         Destroy(emptyTower);
 
         Instantiate(freezeTowerData.towerPrefab, towerPos, Quaternion.identity, transform);
+        Instantiate(smokePrefab, towerPos, Quaternion.identity, transform);
         isTowerEmpty = false;
 
         currentTower = 1;
@@ -205,7 +207,7 @@ public class ShopTower : MonoBehaviour
     void BuyRockTower()
     {
         audioManager.PlaySound(SoundType.TowerPlace);
-        audioManager.PlaySound(SoundType.ButtonBuy);
+        //audioManager.PlaySound(SoundType.ButtonBuy);
 
         GameObject emptyTower = null;
         foreach (Transform child in transform)
@@ -217,7 +219,8 @@ public class ShopTower : MonoBehaviour
         }
         Destroy(emptyTower);
 
-        Instantiate(rockTowerData.towerPrefab, towerPos, Quaternion.identity, transform); 
+        Instantiate(rockTowerData.towerPrefab, towerPos, Quaternion.identity, transform);
+        Instantiate(smokePrefab, towerPos, Quaternion.identity, transform);
         isTowerEmpty = false;
 
         currentTower = 2; 
@@ -231,7 +234,7 @@ public class ShopTower : MonoBehaviour
     void BuyPoisonTower()
     {
         audioManager.PlaySound(SoundType.TowerPlace);
-        audioManager.PlaySound(SoundType.ButtonBuy);
+        //audioManager.PlaySound(SoundType.ButtonBuy);
 
         GameObject emptyTower = null;
         foreach (Transform child in transform)
@@ -243,7 +246,8 @@ public class ShopTower : MonoBehaviour
         }
         Destroy(emptyTower);
 
-        Instantiate(poisonTowerData.towerPrefab, towerPos, Quaternion.identity, transform); 
+        Instantiate(poisonTowerData.towerPrefab, towerPos, Quaternion.identity, transform);
+        Instantiate(smokePrefab, towerPos, Quaternion.identity, transform);
         isTowerEmpty = false;
 
         currentTower = 3; 
@@ -259,7 +263,11 @@ public class ShopTower : MonoBehaviour
 
     void UpgradeTower()
     {
-        audioManager.PlaySound(SoundType.ButtonBuy);
+        if (currentLevel > 0)
+        {
+            audioManager.PlaySound(SoundType.ButtonBuy);
+        }
+        
 
         if (currentTower == 1)
         {
@@ -447,6 +455,7 @@ public class ShopTower : MonoBehaviour
         currentTower = 0;
 
         Instantiate(emptyTowerPrefab, thisPosition, Quaternion.identity, transform);
+        Instantiate(smokePrefab, towerPos, Quaternion.identity, transform);
         isTowerEmpty = true;
 
         CloseTowerUpgrade();

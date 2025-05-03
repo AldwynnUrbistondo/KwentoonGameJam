@@ -60,6 +60,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     [Header("Animation Clips")]
     public AnimationClip attackClip;
+    public AnimationClip deathClip;
 
     Transform basePos;
     Rigidbody2D rb;
@@ -117,7 +118,7 @@ public class Enemy : MonoBehaviour, IDamageable
             rb.velocity = direction * Speed;
             Flip(direction);
         }
-
+        /*
         if (!IsFrozen)
         {
             if (!isAttacking && currentSpeed > 2)
@@ -129,15 +130,21 @@ public class Enemy : MonoBehaviour, IDamageable
                 animator.Play("Idle");
             }
         }
-        
+        */
     }
 
     public void TakeDamage(Transform bullet, float damage)
     {
-        HP -= damage;
-        DamageText(damage);
-        AudioManager audioManager = FindObjectOfType<AudioManager>();
-        audioManager.PlaySound(SoundType.EnemyHit);
+        if (!IsDying)
+        {
+            HP -= damage;
+            DamageText(damage);
+            AudioManager audioManager = FindObjectOfType<AudioManager>();
+            audioManager.PlaySound(SoundType.EnemyHit);
+
+            GameManager.damageDealth += damage;
+        }
+        
 
         if (HP <= 0)
         {
@@ -160,18 +167,10 @@ public class Enemy : MonoBehaviour, IDamageable
             
     }
 
-    public void CheckHealth()
-    {
-        if (HP <= 0)
-        {
-            Die();
-        }
-    }
-
     public void Die()
     {
         IsDying = true;
-
+        StopAllCoroutines();
         StartCoroutine(StartDie());
     }
 
@@ -191,7 +190,9 @@ public class Enemy : MonoBehaviour, IDamageable
         AudioManager audioManager = FindObjectOfType<AudioManager>();
         audioManager.PlaySound(SoundType.EnemyDeath);
 
-        yield return new WaitForSeconds(attackClip.length);
+        animator.Play("Die");
+
+        yield return new WaitForSeconds(deathClip.length);
         Destroy(gameObject);
     }
 

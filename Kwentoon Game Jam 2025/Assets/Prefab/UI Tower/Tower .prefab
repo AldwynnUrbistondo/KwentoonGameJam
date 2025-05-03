@@ -52,7 +52,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.75
+  m_Radius: 1.5
 --- !u!114 &7834142096956406911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,6 +71,7 @@ MonoBehaviour:
   currentLevel: 0
   currentTower: 0
   emptyTowerPrefab: {fileID: 2768319185717160471, guid: 18ae72365eacadb4e9c0a4da62e8c7db, type: 3}
+  smokePrefab: {fileID: 1298369393374081941, guid: f93a9aa7875cdd24592281f59ec61e6d, type: 3}
   towerImage: {fileID: 7834142095909401382}
   closeShopButton: {fileID: 7834142095647888202}
   buyFreezeTowerButton: {fileID: 7834142096823588336}
@@ -158,7 +159,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -975038297
-  m_SortingLayer: 34
+  m_SortingLayer: 35
   m_SortingOrder: 0
   m_Sprite: {fileID: 1936337312046179595, guid: c59dc79b9cbf2a9498706fbbcf7a200f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

@@ -404,6 +404,7 @@ MonoBehaviour:
   canMove: 1
   isAttacking: 0
   attackClip: {fileID: 7400000, guid: 603bfdb9c940a644da32f7bd838931ad, type: 2}
+  deathClip: {fileID: 7400000, guid: 3f4eba2743c19fe48847b28fd3f79d19, type: 2}
   childToIgnoreFlip: {fileID: 1356021594756401109}
   currentSpeed: 0
 --- !u!58 &4611850833343827255
