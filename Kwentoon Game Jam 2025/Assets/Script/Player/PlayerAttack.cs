@@ -17,7 +17,7 @@ public class PlayerAttack : ShooterScript
         //CleanEnemyList();
 
         fireInterval += Time.deltaTime;
-        if (fireInterval >= fireRate && Input.GetMouseButton(0) && !GameManager.isPause)
+        if (fireInterval >= fireRate && Input.GetMouseButton(0) && !GameManager.isPause && !GameManager.hasLose)
         {
             ShootEnemy(damage);
             fireInterval = 0;

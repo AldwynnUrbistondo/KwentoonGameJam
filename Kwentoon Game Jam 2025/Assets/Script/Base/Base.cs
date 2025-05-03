@@ -66,6 +66,9 @@ public class Base : MonoBehaviour, IAlly
 
         AudioManager audioManager = FindObjectOfType<AudioManager>();
         audioManager.PlaySound(SoundType.TowerDestroy);
+
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.color = Color.black;
     }
 
     void RegenHP()

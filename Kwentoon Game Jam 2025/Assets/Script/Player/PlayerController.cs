@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
     public void Update()
     {
        
-        if (!GameManager.isPause)
+        if (!GameManager.isPause && !GameManager.hasLose)
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePos.z = 0f;
@@ -40,6 +40,10 @@ public class PlayerController : MonoBehaviour
             dashForce = movementSpeed * 4;
 
             PlayerMovement();
+        }
+        else
+        {
+            rb.velocity = Vector2.zero;
         }
         
         
