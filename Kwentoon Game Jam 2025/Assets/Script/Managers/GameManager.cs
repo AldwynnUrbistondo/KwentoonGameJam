@@ -4,6 +4,8 @@ using UnityEngine;
 using TMPro;
 public class GameManager : MonoBehaviour
 {
+    public Canvas pauseCanvas;
+
     public TextMeshProUGUI coinsText;
     public TextMeshProUGUI waveText;
 
@@ -19,6 +21,12 @@ public class GameManager : MonoBehaviour
     public float coins;
     public float lerpDuration;
     private float lerpTime = 0f;
+
+    private void Awake()
+    {
+        pauseCanvas.worldCamera = Camera.main;
+        pauseCanvas.sortingLayerName = "UI Shop";
+    }
 
     void Start()
     {
@@ -36,10 +44,15 @@ public class GameManager : MonoBehaviour
 
         if (!isPause)
         {
-            SpeedUpTime();
+            //SpeedUpTime();
         }
 
         CoinLerp();
+
+        if (Input.GetKeyDown(KeyCode.Escape) && isTutorialFinished && !hasLose && !isPause)
+        {
+            PauseGame();
+        }
     }
 
     void UIUpdate()
@@ -54,6 +67,13 @@ public class GameManager : MonoBehaviour
             waveText.text = "Tutorial";
         }
        
+    }
+
+    void PauseGame()
+    {
+        GameManager.isPause = true;
+        Time.timeScale = 0f;
+        pauseCanvas.gameObject.SetActive(true);
     }
 
     void SpeedUpTime()

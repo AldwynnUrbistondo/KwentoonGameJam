@@ -63,7 +63,7 @@ public class BaseShop : MonoBehaviour
 
     private void Update()
     {
-        if (isPlayerNear && Input.GetKeyDown(KeyCode.E) && !GameManager.hasLose && GameManager.isTutorialFinished)
+        if (isPlayerNear && Input.GetKeyDown(KeyCode.E) && !GameManager.hasLose && GameManager.isTutorialFinished && !GameManager.isPause)
         {
             OpenUpgradeShop();
         }

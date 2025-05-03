@@ -75,11 +75,11 @@ public class ShopTower : MonoBehaviour
 
     private void Update()
     {
-        if (isPlayerNear && Input.GetKeyDown(KeyCode.E) && isTowerEmpty && !GameManager.hasLose && GameManager.isTutorialFinished)
+        if (isPlayerNear && Input.GetKeyDown(KeyCode.E) && isTowerEmpty && !GameManager.hasLose && GameManager.isTutorialFinished && !GameManager.isPause)
         {
             OpenTowerShop();
         }
-        else if (isPlayerNear && Input.GetKeyDown(KeyCode.E) && !isTowerEmpty && !GameManager.hasLose && GameManager.isTutorialFinished)
+        else if (isPlayerNear && Input.GetKeyDown(KeyCode.E) && !isTowerEmpty && !GameManager.hasLose && GameManager.isTutorialFinished && !GameManager.isPause)
         {
             OpenTowerUpgrade();
         }
