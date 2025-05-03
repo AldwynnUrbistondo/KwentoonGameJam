@@ -79,6 +79,8 @@ public class Base : MonoBehaviour, IAlly
         PlayerPrefs.SetFloat("Damage Dealth", GameManager.damageDealth);
         PlayerPrefs.SetInt("Waves Survived", GameManager.wave - 1);
         PlayerPrefs.Save();
+
+        StartCoroutine(LoseScene());
     }
 
     IEnumerator LoseScene()
