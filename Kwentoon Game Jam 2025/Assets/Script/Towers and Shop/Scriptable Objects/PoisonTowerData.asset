@@ -29,9 +29,9 @@ MonoBehaviour:
   - 0
   - 0
   damage:
-  - 5
   - 7
-  - 10
+  - 9
+  - 15
   - 20
   - 30
   critRate:

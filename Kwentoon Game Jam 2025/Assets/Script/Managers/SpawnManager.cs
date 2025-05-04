@@ -145,6 +145,11 @@ public class SpawnManager : MonoBehaviour
             addWaveTankEnemies = 1;
             numOfWaveTankEnemies = Mathf.Clamp(numOfWaveTankEnemies + addWaveTankEnemies, 0, 10);
         }
+
+        if (GameManager.wave >= 30)
+        {
+            hpMultiplier += 1f;
+        }
         
     }
 
