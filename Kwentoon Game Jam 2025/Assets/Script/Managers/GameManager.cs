@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     {
         isPause = false;
         hasLose = false;
+        isTutorialFinished = false;
         
         wave = 0;
         damageDealth = 0;
